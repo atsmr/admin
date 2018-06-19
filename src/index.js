@@ -1,12 +1,11 @@
 import { h, Component } from 'preact'
 import { Provider } from 'preact-redux'
-import App from './components/App'
+import App from './components/app'
 import store from './store'
-import './style';
-import App from './components/App';
+import './style'
 
-export default () => {
+export default () => (
     <Provider store={store}>
         <App />
     </Provider>
-}
+)
