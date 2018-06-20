@@ -5,6 +5,7 @@ import style from './style';
 import LOGO from '../../../assets/logo.svg'
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
+import Button from '../../atoms/Button'
 //import * as firebase from 'firebase'
 
 @connect(reducer, actions)
@@ -14,14 +15,15 @@ class Header extends Component {
 	}
 	render() {
 		return (
-			<header class={style.default}>
-				<h1>This is H1</h1>
-				<img src={LOGO} width="32" height="32" alt="FamilyLand, Inc." />
+			<header class={ this.props.s.test ? style.dark: style.light }>
+				<div class={style.inr}>
+					<img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
 				<nav>
-					<Link activeClassName={style.active} href="/">Home</Link>
-					<Link activeClassName={style.active} href="/profile">Me</Link>
-					<Link activeClassName={style.active} href="/profile/john">John</Link>
+					<Link activeClassName={style.active} href="/">Works</Link>
+					<Link activeClassName={style.active} href="/profile">Docs</Link>
 				</nav>
+				<Button title="Add" />
+				</div>
 			</header>
 		)
 	}

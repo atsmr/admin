@@ -11,7 +11,7 @@ let ACTIONS = {
 
 const INITIAL = {
     s: {
-        test: false
+        test: true
     }
 }
 
