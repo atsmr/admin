@@ -1,6 +1,18 @@
+.dark, .light {
+    width: 85px;
+    height: 33px;
+    border-radius: 30px;
+    position: absolute;
+    top:7px;
+    right: 60px;
+    border: none;
+    font-family: "playfiar Display", serif;
+}
 .dark {
-    background: #000;
+    background: #fff;
+    color: #000;
 }
 .light {
-    background: #fff;
+    background: #000;
+    color: #fff;
 }
