@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import Header from './organisms/header';
+import Sidebar from './organisms/sidebar';
 import Home from 'async!../routes/home';
 import Profile from 'async!../routes/profile';
 //import * as firebase from 'firebase'
@@ -20,6 +21,7 @@ class App extends Component {
 		return (
 			<div id="app">
 				<Header />
+				<Sidebar />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Profile path="/profile/" user="me" />

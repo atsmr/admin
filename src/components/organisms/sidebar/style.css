@@ -1,0 +1,38 @@
+.sidenav {
+    height: 100%; 
+    width: 258px; 
+    position: fixed; 
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    font-family: 'playfiar Display', serif;
+    overflow-x: hidden;
+    padding-top:30px;
+}
+
+/* The navigation menu links */
+.sidenav li {
+    padding: 6px 8px 30px  60px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav li:hover {
+    color: #999;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
