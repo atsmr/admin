@@ -1,6 +1,6 @@
-export function initUser(obj) {
+export function openPersonalNav(bool) {
     return {
-        type: 'INIT_USER',
-        obj
+        type: 'OPEN_PERSONAL_NAV',
+        bool
     }
 }

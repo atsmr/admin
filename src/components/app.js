@@ -4,6 +4,7 @@ import Header from './organisms/header';
 import Sidebar from './organisms/sidebar';
 import Home from 'async!../routes/home';
 import Profile from 'async!../routes/profile';
+import PersonalMenu from '../components/organisms/personalMenu';
 //import * as firebase from 'firebase'
 //import 'firebase/firestore'
 //import config from '../../../conf/firebase'
@@ -27,6 +28,7 @@ class App extends Component {
 					<Profile path="/profile/" user="me" />
 					<Profile path="/profile/:user" />
 				</Router>
+      <PersonalMenu />
 			</div>
 		);
 	}
