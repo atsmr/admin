@@ -1,7 +1,13 @@
 .sidenav {
+<<<<<<< HEAD
     height: calc(100% - 48px);
     width: 258px;
     position: fixed;
+=======
+    height: calc(100% - 63px);
+    width: 258px; 
+    position: fixed; 
+>>>>>>> ccbd89d3d73d1c11e78aca3e81c85f8ea2c79b5c
     z-index: 1;
     top: 0;
     left: 0;
