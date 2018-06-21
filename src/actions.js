@@ -4,3 +4,9 @@ export function openPersonalMenu(bool) {
         bool
     }
 }
+export function currentHeaderNav(arr) {
+    return {
+        type: 'CURRENT_HEADER_NAV',
+        arr
+    }
+}

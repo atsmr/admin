@@ -16,6 +16,16 @@ let ACTIONS = {
             },
         },
         ...state
+    }),
+    CURRENT_HEADER_NAV: ({ s, ...state }, { arr }) => ({
+        s: {
+            ...s,
+            position: {
+                ...s.position,
+                headerNav: arr
+            },
+        },
+        ...state
     })
 }
 
@@ -26,7 +36,7 @@ const INITIAL = {
             personalMenu: false
         },
         position: {
-            headerNav: 0,
+            headerNav: [44, 25], // [barSize, positionFromLeft]
         }
     }
 }
