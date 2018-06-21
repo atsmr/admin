@@ -1,0 +1,31 @@
+.i {
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+}
+
+.i img {
+    animation: spinner infinite 10s linear;
+}
+
+.i p {
+    font-size: 11px;
+    color: #000;
+    font-weight: bold;
+    margin: 6px 0 0 0;,
+    letter-spacing: 2px;
+}
+
+.i div {
+    position: absolute;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -35px;
+    top: 50%;
+}
+
+@keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

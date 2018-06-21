@@ -1,9 +1,0 @@
-.side {
-    height: calc(100% - 48px);
-    width: 258px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-family: 'playfiar Display', serif;
-    background: #fff;
-}

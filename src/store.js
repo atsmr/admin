@@ -41,6 +41,7 @@ let ACTIONS = {
 
 const INITIAL = {
     s: {
+        login: true,
         page: "/",
         visibility: {
             personalMenu: false
