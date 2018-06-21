@@ -14,6 +14,7 @@
     display: none;
 }
 .rOpen {
+    z-index:2;
     display: block
 }
 .wrap {
