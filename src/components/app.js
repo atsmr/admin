@@ -9,6 +9,7 @@ import Profile from 'async!../routes/profile';
 import { connect } from 'preact-redux'
 import reducer from '../reducer'
 import * as actions from '../actions'
+import PersonalMenu from '../components/organisms/personalMenu'
 
 @connect(reducer, actions)
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
 	render() {
 		return (
 			<div id="app">
+                <PersonalMenu />
 				<Header />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />

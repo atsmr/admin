@@ -6,12 +6,23 @@ let ACTIONS = {
             ...s
         },
         ...state
+    }),
+    OPEN_PERSONAL_NAV: ({ s, ...state }, { bool }) => ({
+        s: {
+            visibility: {
+                personalNav: !bool,
+            },
+            ...s.visibility
+        },
+        ...s
     })
 }
 
 const INITIAL = {
     s: {
-        test: false
+        visibility: {
+            personalNav: false
+        }
     }
 }
 
