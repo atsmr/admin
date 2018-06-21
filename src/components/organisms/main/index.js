@@ -4,6 +4,7 @@ import { connect } from 'preact-redux'
 import style from './style';
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
+import SideBar from '../sidebar'
 
 @connect(reducer, actions)
 class Main extends Component {
@@ -34,9 +35,14 @@ class Main extends Component {
             <div class={style.switcher}>
                 <div id="main" class={style.wrap}>
                     <section style={{left: this.props.s.position.main[0] + 'px'}}>
-                        {this.props.children}
+                        <div class={style.inr}>
+                            <SideBar />
+                            {this.props.children}
+                        </div>
                     </section>
                     <section class={style.test} style={{left: this.props.s.position.main[1] + 'px'}}>
+                        <div class={style.inr}>
+                        </div>
                     </section>
                 </div>
             </div>

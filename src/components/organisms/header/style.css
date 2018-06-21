@@ -77,6 +77,27 @@ nav ul {
 
 .logo {
 	position: absolute;
-	top: 13px;
+	top: 12px;
     left: 60px;
+}
+.add {
+    vertical-align: middle;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    position: fixed;
+    right: 60px;
+    bottom: 22px;
+    display: inline-block;
+    background: #fff;
+    border: 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+.add:hover {
+    cursor: pointer
+}
+.add:focus {
+    outline: 0;
 }

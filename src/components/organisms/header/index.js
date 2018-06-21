@@ -7,6 +7,7 @@ import * as actions from '../../../actions'
 import reducer from '../../../reducer'
 import Button from '../../atoms/Button'
 //import * as firebase from 'firebase'
+import ICON_ADD from '../../../assets/icons/icon-add-bl.svg'
 
 @connect(reducer, actions)
 class Header extends Component {
@@ -44,12 +45,14 @@ class Header extends Component {
             <header class={ this.props.s.page === "/" ? style.dark : style.light }>
                 <div class={style.inr}>
                     <img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
+                    <button class={style.add}>
+                        <img src={ICON_ADD} width="20" height="20" alt="FamilyLand, Inc." />
+                    </button>
                     <nav>
                         <ul>
-                            <li><Link onclick={this.current} href="/">Works</Link></li><li><Link onclick={this.current} activeClassName={style.active} href="/">Docs</Link></li><li class={style.current} style={{ left: this.props.s.position.headerNav[1] + 'px', width: this.props.s.position.headerNav[0] + 'px'}}></li>
+                            <li><Link activeClassName={style.active} onclick={this.current} href="/">Works</Link></li><li><Link activeClassName={style.active} onclick={this.current} activeClassName={style.active} href="/profile/">Docs</Link></li><li class={style.current} style={{ left: this.props.s.position.headerNav[1] + 'px', width: this.props.s.position.headerNav[0] + 'px'}}></li>
                         </ul>
                     </nav>
-                    <Button title="Add" />
                 </div>
 			</header>
 		)

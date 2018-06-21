@@ -14,14 +14,19 @@ class Sidebar extends Component {
     }
     render() {
         return (
-            <nav>
-                <div class={style.sidenav}>
-                    <ul>
-                        <li>test</li>
-                        <li>test</li>
-                    </ul>
+            <aside class={style.side}>
+                <div class={style.inr}>
+                    <nav>
+                        <ul>
+                            <li><Link activeClassName={style.active} href="/">Dashboard</Link></li>
+                            <li><Link activeClassName={style.active} href="/profile">Marketing</Link></li>
+                            <li><Link activeClassName={style.active} href="/">Projects</Link></li>
+                            <li><Link activeClassName={style.active} href="/profile">Management</Link></li>
+                            <li><Link activeClassName={style.active} href="/">Support</Link></li>
+                        </ul>
+                    </nav>
                 </div>
-            </nav>
+            </aside>
             )
     }
 }
