@@ -1,0 +1,161 @@
+.r {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(0,0,0,1);
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+.r .wrap {
+    display: none;
+}
+.rOpen {
+    display: block
+}
+.wrap {
+    display: flex;
+    width: 100%;
+    height: 100%
+}
+.main {
+    padding: 0 60px;
+    width: 100%;
+}
+
+.rOpen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    height: calc(100% - 48px);
+    background: #101010;
+}
+.rOpen .button button:before {
+    transform: rotate(45deg);
+    top: 19.5px;
+    left: 12px;
+    background: #fff;
+}
+.rOpen .button {
+    top: 40px;
+}
+.rOpen .button button {
+    background: #000;
+}
+.rOpen .button button:after {
+    top: 19.5px;
+    left: 12px;
+    transform: rotate(-45deg);
+    background: #fff;
+}
+.rOpen thead {
+    background: #101010;
+}
+.rOpen thead td {
+    font-family: "Playfair Display", serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 5px 10px;
+    text-align: right;
+}
+.button {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+.button button {
+    outline: 0;
+    border: 0;
+    border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.button button:hover {
+    cursor: pointer
+}
+
+.button button:before {
+    content: '';
+    width: 17px;
+    height: 2px;
+    position: absolute;
+    top: 15px;
+    left: 11px;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    background: rgba(0,0,0,1)
+}
+
+.button button:after {
+    content: '';
+    width: 17px;
+    height: 2px;
+    position: absolute;
+    bottom: 15px;
+    left: 11px;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    background: rgba(0,0,0,1)
+}
+
+.calendar {
+    height: calc(100% - 140px)
+}
+.calendar header h1 {
+    padding: 40px 0 20px;
+    color: #fff;
+    font-size: 33px;
+}
+.calendar header span {
+    padding-left: 10px;
+    font-family: 'Lato', san-serif;
+    font-weight: 100
+}
+.calendar table {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: #121212;
+}
+.calendar table tbody td {
+    position: relative;
+    min-height: 100%;
+    border: 1px solid #101010;
+}
+.calendar table tbody td:hover {
+    cursor: pointer;
+    background: #161616;
+}
+.calendar table tbody td .day {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #ccc;
+}
+.calendar table tbody td.holiday {
+    background: #161616;
+}
