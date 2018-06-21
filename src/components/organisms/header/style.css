@@ -1,8 +1,11 @@
 .inr {
+    width: calc(100% - 120px);
 	position: relative;
 	padding: 0 60px;
 }
+
 .dark {
+    text-align: center;
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -14,12 +17,28 @@
 	z-index: 50;
 }
 .dark nav {
-	width: 20%;
-	height: 48;
+    display: inline-block;
+	height: 48px;
 	line-height: 48px;
 	text-align: center;
 	margin: 0 auto;
 }
+nav ul li {
+    display: inline-block;
+}
+
+nav ul {
+    position: relative
+}
+
+.nav ul li.current {
+    border-bottom: 1px solid #fff;
+}
+
+nav ul li a {
+}
+
+
 .dark nav a, .light nav a {
 	text-decoration: none;
 	margin: 0 25px;
@@ -31,6 +50,13 @@
 	color: #fff;
 }
 .light {
+    text-align: center;
+	height: 48px;
+	position: fixed;
+	width: 100%;
+	height: 48px;
+	left: 0;
+	bottom: 0;
 	background: rgba(255, 255, 255, 1);
 }
 .light nav {
@@ -38,21 +64,14 @@
 	height: 48;
 	line-height: 48px;
 	text-align: center;
-	margin: 0 auto;	
+	margin: 0 auto;
 }
 .light nav a {
-	color: #000;	
+	color: #000;
 }
-.header h1 {
-	float: left;
-	margin: 0;
-	padding: 0 15px;
-	font-size: 24px;
-	line-height: 56px;
-	font-weight: 400;
-	color: #FFF;
-}
+
 .logo {
 	position: absolute;
 	top: 11px;
+    left: 60px;
 }

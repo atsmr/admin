@@ -1,6 +1,6 @@
-export function openPersonalNav(bool) {
+export function openPersonalMenu(bool) {
     return {
-        type: 'OPEN_PERSONAL_NAV',
+        type: 'OPEN_PERSONAL_MENU',
         bool
     }
 }

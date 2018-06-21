@@ -9,26 +9,21 @@ import reducer from '../../../reducer'
 
 @connect(reducer, actions)
 class Sidebar extends Component {
-	constructor(props) {
-		super(props)
-	}
-	render() {
-		return (
-      <nav>
-      <div class={style.sidenav}>
-        <ul> 
-          <li>test</li>
-          <li>test</li>
-          <li>test</li>
-          <li>test</li>
-        </ul>
-      </div>
-
-      <div class={style.main}>
-      </div>
-      </nav>
-    )
-	}
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            <nav>
+                <div class={style.sidenav}>
+                    <ul>
+                        <li>test</li>
+                        <li>test</li>
+                    </ul>
+                </div>
+            </nav>
+            )
+    }
 }
 
 export default Sidebar;

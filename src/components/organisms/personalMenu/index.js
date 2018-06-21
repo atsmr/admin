@@ -15,12 +15,13 @@ class PersonalMenu extends Component {
     }
 
     open = () => {
-        this.props.openPersonalNav(this.props.s.visibility.personalNav)
+        this.props.openPersonalMenu(this.props.s.visibility.personalMenu)
     }
 
     render() {
+        console.log(this.props.s)
         return (
-            <section class={ this.props.s.visibility.personalNav ? style.rOpen : style.r }>
+            <section class={ this.props.s.visibility.personalMenu ? style.rOpen : style.r }>
                 <div class={style.wrap}>
                     <div class={style.main}>
                         <section class={style.calendar}>

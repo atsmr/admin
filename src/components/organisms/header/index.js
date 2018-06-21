@@ -15,15 +15,18 @@ class Header extends Component {
 	}
 	render() {
 		return (
-			<header class={ this.props.s.test ? style.dark: style.light }>
-				<div class={style.inr}>
-					<img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
-				<nav>
-					<Link activeClassName={style.active} href="/">Works</Link>
-					<Link activeClassName={style.active} href="/profile">Docs</Link>
-				</nav>
-				<Button title="Add" />
-				</div>
+            <header class={ this.props.s.page === "/" ? style.dark : style.light }>
+                <div class={style.inr}>
+                    <img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
+                    <nav>
+                        <ul>
+                            <li><Link activeClassName={style.active} href="/">Works</Link></li>
+                            <li><Link activeClassName={style.active} href="/">Docs</Link></li>
+                            <li class={style.current}></li>
+                        </ul>
+                    </nav>
+                    <Button title="Add" />
+                </div>
 			</header>
 		)
 	}

@@ -7,23 +7,27 @@ let ACTIONS = {
         },
         ...state
     }),
-    OPEN_PERSONAL_NAV: ({ s, ...state }, { bool }) => ({
+    OPEN_PERSONAL_MENU: ({ s, ...state }, { bool }) => ({
         s: {
+            ...s,
             visibility: {
-                personalNav: !bool,
+                ...s.visibility,
+                personalMenu: !bool
             },
-            ...s.visibility
         },
-        ...s
+        ...state
     })
 }
 
 const INITIAL = {
     s: {
+        page: "/",
         visibility: {
-            personalNav: false
+            personalMenu: false
         },
-        test: true
+        position: {
+            headerNav: 0,
+        }
     }
 }
 
