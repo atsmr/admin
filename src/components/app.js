@@ -4,6 +4,7 @@ import Header from './organisms/header';
 import Sidebar from './organisms/sidebar';
 import Home from 'async!../routes/home';
 import Profile from 'async!../routes/profile';
+import Main from '../components/organisms/main';
 import PersonalMenu from '../components/organisms/personalMenu';
 //import * as firebase from 'firebase'
 //import 'firebase/firestore'
@@ -23,12 +24,14 @@ class App extends Component {
 			<div id="app">
 				<Header />
 				<Sidebar />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-				</Router>
-      <PersonalMenu />
+                <Main>
+                    <Router onChange={this.handleRoute}>
+                        <Home path="/" />
+                        <Profile path="/profile/" user="me" />
+                        <Profile path="/profile/:user" />
+                    </Router>
+                </Main>
+                <PersonalMenu />
 			</div>
 		);
 	}

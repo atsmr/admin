@@ -11,14 +11,12 @@ import reducer from '../../../reducer'
 class Button extends Component {
 	constructor(props) {
 		super(props)
-		console.log(this.props)
-		console.log(this.props)
 	}
 	render() {
 		return (
 		<button class={ this.props.s.test ? style.dark: style.light }><img class={style.add} src={ADD} width="2" height="2" alt="+" />{this.props.title}</button>
 		)
 	}
-}	
+}
 
 export default Button;

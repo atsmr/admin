@@ -19,7 +19,6 @@ class PersonalMenu extends Component {
     }
 
     render() {
-        console.log(this.props.s)
         return (
             <section class={ this.props.s.visibility.personalMenu ? style.rOpen : style.r }>
                 <div class={style.wrap}>

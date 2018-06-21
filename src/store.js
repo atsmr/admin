@@ -26,6 +26,16 @@ let ACTIONS = {
             },
         },
         ...state
+    }),
+    CHANGE_MAIN_SEC: ({ s, ...state }, { arr }) => ({
+        s: {
+            ...s,
+            position: {
+                ...s.position,
+                main: arr
+            },
+        },
+        ...state
     })
 }
 
@@ -36,6 +46,7 @@ const INITIAL = {
             personalMenu: false
         },
         position: {
+            main: [],
             headerNav: [44, 25], // [barSize, positionFromLeft]
         }
     }

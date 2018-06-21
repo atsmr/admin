@@ -10,3 +10,9 @@ export function currentHeaderNav(arr) {
         arr
     }
 }
+export function changeMainSec(arr) {
+    return {
+        type: 'CHANGE_MAIN_SEC',
+        arr
+    }
+}
