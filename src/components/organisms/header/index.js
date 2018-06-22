@@ -14,7 +14,11 @@ class Header extends Component {
 	constructor(props) {
 		super(props)
         this.current = this.current.bind(this)
+        this.openWorkSpace = this.openWorkSpace.bind(this)
 	}
+    openWorkSpace = e => {
+        this.props.openWorkSpace(this.props.s.visibility.workSpace)
+    }
     current = (e) => {
         let arr = [];
         let p = 0, w = 0;
@@ -42,17 +46,17 @@ class Header extends Component {
     }
 	render() {
 		return (
-            <header class={ this.props.s.page === "/" ? style.dark : style.light }>
+            <header class={ this.props.s.page === "/" ? style.dark : style.light } style={this.props.s.visibility.workSpace ? { height: '100%'} : null}>
                 <div class={style.inr}>
                     <img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
-                    <button class={style.add}>
-                        <img src={ICON_ADD} width="20" height="20" alt="FamilyLand, Inc." />
-                    </button>
                     <nav>
                         <ul>
                             <li><Link activeClassName={style.active} onclick={this.current} href="/">Works</Link></li><li><Link activeClassName={style.active} onclick={this.current} activeClassName={style.active} href="/profile/">Docs</Link></li><li class={style.current} style={{ left: this.props.s.position.headerNav[1] + 'px', width: this.props.s.position.headerNav[0] + 'px'}}></li>
                         </ul>
                     </nav>
+                    <button class={style.add} onclick={this.openWorkSpace}>
+                        <img src={ICON_ADD} width="20" height="20" alt="FamilyLand, Inc." style={this.props.s.visibility.workSpace ? {transform: 'rotate(-45deg)' } : null } />
+                    </button>
                 </div>
 			</header>
 		)

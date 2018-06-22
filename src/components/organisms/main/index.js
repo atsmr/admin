@@ -29,6 +29,17 @@ class Main extends Component {
             }
         }
         this.props.changeMainSec(arr)
+        let that = this;
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if (e.ctrlKey && e.keyCode == 78) {
+                that.props.changeMainSec([-1440, 0])
+                that.props.currentHeaderNav([35,120])
+            } else if(e.ctrlKey && e.keyCode == 80) {
+                that.props.changeMainSec([0, 1440])
+                that.props.currentHeaderNav([45,25])
+            }
+        }
     }
     render() {
         return (
@@ -47,6 +58,6 @@ class Main extends Component {
                 </div>
             </div>
             )
-    }
+}
 }
 export default Main;

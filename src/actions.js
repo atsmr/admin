@@ -1,3 +1,9 @@
+export function openWorkSpace(bool) {
+    return {
+        type: 'OPEN_WORK_SPACE',
+        bool
+    }
+}
 export function openPersonalMenu(bool) {
     return {
         type: 'OPEN_PERSONAL_MENU',

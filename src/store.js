@@ -17,6 +17,16 @@ let ACTIONS = {
         },
         ...state
     }),
+    OPEN_WORK_SPACE: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            visibility: {
+                ...s.visibility,
+                workSpace: !bool
+            },
+        },
+        ...state
+    }),
     CURRENT_HEADER_NAV: ({ s, ...state }, { arr }) => ({
         s: {
             ...s,
@@ -44,6 +54,7 @@ const INITIAL = {
         login: true,
         page: "/",
         visibility: {
+            workSpace: false,
             personalMenu: false
         },
         position: {
