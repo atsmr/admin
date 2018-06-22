@@ -5,30 +5,14 @@ import style from './style';
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
 import SideBar from '../sidebar'
+import Contents from '../contents'
 
 @connect(reducer, actions)
 class Main extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            w: 0
-        }
     }
     componentDidMount() {
-        let win = window.innerWidth
-        let arr = [];
-        this.setState({
-            w: win
-        })
-        let l = document.getElementById('main').children
-        for(let i=0; i < l.length; i++ ) {
-            if(i === 0) {
-                arr.push(0)
-            } else {
-                arr.push(win)
-            }
-        }
-        this.props.changeMainSec(arr)
         let that = this;
         document.onkeydown = function(e) {
             e = e || window.event;
@@ -50,11 +34,14 @@ class Main extends Component {
                     <section style={{left: this.props.s.position.main[0] + 'px'}}>
                         <div class={style.inr}>
                             <SideBar />
-                            {this.props.children}
+                            <Contents>
+                                {this.props.children}
+                            </Contents>
                         </div>
                     </section>
                     <section style={{left: this.props.s.position.main[1] + 'px'}}>
                         <div class={style.inr}>
+                            <SideBar />
                         </div>
                     </section>
                 </div>

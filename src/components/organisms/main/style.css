@@ -1,3 +1,11 @@
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 .switcher {
     overflow: hidden;
     width: 100%;
@@ -21,10 +29,11 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    transition: all .8s ease;
-    -o-transition: all .8s ease;
-    -moz-transition: all .8s ease;
-    -webkit-transition: all .8s ease;
+    transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    animation: fadein .4s normal forwards ease-in-out;
 }
 .switcher section .inr {
     width: 100%;

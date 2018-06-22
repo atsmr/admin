@@ -60,11 +60,23 @@ let ACTIONS = {
             login: bool,
         },
         ...state
+    }),
+    FETCH_USERS: ({ s, ...state }, { arr, obj }) => ({
+        ...state,
+        s: {
+            ...s,
+            fetched: {
+                ...s.fetched,
+                users: true
+            }
+        },
+        i: obj,
+        u: arr
     })
 }
 
 const INITIAL = {
-    s: {
+    s: { // States
         login: false,
         path: "/",
         visibility: {
@@ -74,8 +86,14 @@ const INITIAL = {
         position: {
             main: [],
             headerNav: [44, 25], // [barSize, positionFromLeft]
+        },
+        fetched: {
+            users: false
         }
-    }
+    },
+    u: [], // Users
+    i: {}, // Current user
+    c: {} // User config
 }
 
 export default createStore( (state, action) => (

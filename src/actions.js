@@ -34,3 +34,11 @@ export function login(bool) {
         bool
     }
 }
+// Firestore
+export function fetchUsers(arr, obj) {
+    return {
+        type: 'FETCH_USERS',
+        arr,
+        obj
+    }
+}

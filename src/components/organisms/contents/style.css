@@ -1,0 +1,6 @@
+.r {
+    width: calc( 100% - 274px)!important;
+    height: calc(100% - 48px)!important;
+    left: 274px!important;
+    top: 0;
+}

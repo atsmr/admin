@@ -6,6 +6,7 @@ import LOGO from '../../../assets/logo.svg'
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
 //import * as firebase from 'firebase'
+import Avatar from '../../molecules/avatar'
 
 @connect(reducer, actions)
 class Sidebar extends Component {
@@ -26,8 +27,9 @@ class Sidebar extends Component {
                         </ul>
                     </nav>
                 </div>
+                <Avatar />
             </aside>
-            )
+        )
     }
 }
 

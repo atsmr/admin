@@ -11,41 +11,48 @@ import Loading from '../components/pages/loading';
 import { connect } from 'preact-redux'
 import reducer from '../reducer'
 import * as actions from '../actions'
-import firebase from "firebase/app";
 import config from '../conf/firebase.js'
-//import 'firebase/firestore'
+import firebase from "firebase/app";
+import 'firebase/firestore';
 
 @connect(reducer, actions)
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            checkLogin: false
-        }
-    }
-    componentWillMount() {
-        firebase.initializeApp(config);
-        let that = this;
+        let that = this
+        firebase.initializeApp(config)
+        this.db = firebase.firestore()
+        this.db.settings({timestampsInSnapshots: true})
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
+                let uid = user.uid
                 that.props.login(true)
-                console.log(user.name)
                 that.setState({checkLogin: true})
+                that.db.collection("people").where('user', '==', true).onSnapshot(function(docs) {
+                    let users = []
+                    let currentUser = {}
+                    docs.forEach(function(doc) {
+                        if (doc.data().uid === uid) {
+                            currentUser = doc.data()
+                        }
+                        users.push(doc.data());
+                    });
+                    // TODO:: Add people
+                    //that.db.collection('people').doc().set(currentUser)
+                    that.props.fetchUsers(users, currentUser)
+                })
             } else {
                 that.setState({checkLogin: true})
             }
         })
-        ///firebase.auth().signOut().then(function() {
-        ///  // Sign-out successful.
-        ///}).catch(function(error) {
-        ///  // An error happened.
-        ///});
+        this.state = {
+            checkLogin: false
+        }
     }
 
     handleRoute = e => { this.currentUrl = e.url; };
-	render() {
-        console.log(this.state.checkLogin)
-        console.log(this.props.s.login)
+
+    render() {
         if(this.props.s.login && this.state.checkLogin ) {
             return (
                 <div id="app">
@@ -63,10 +70,17 @@ class App extends Component {
                 )
         } else if (this.state.checkLogin && !this.props.s.login ) {
             return <Login />
-        } else {
-            return <Loading />
-        }
-	}
+            } else {
+                return <Loading />
+                }
+    }
 }
 
 export default App
+
+//that.db.collection('people').doc().set(doc.data())
+//firebase.auth().signOut().then(function() {
+//  // Sign-out successful.
+//}).catch(function(error) {
+//  // An error happened.
+//})

@@ -48,7 +48,6 @@ class Header extends Component {
     }
 
 	render() {
-        console.log(this.props.s)
 		return (
             <header class={this.props.s.path == "/" ? style.dark : style.light } style={this.props.s.visibility.workSpace ? { height: '100%'} : null}>
                 <div class={style.inr}>
