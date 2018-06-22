@@ -8,7 +8,7 @@ export default class Loading extends Component {
         return (
             <section class={style.i}>
                 <div>
-                    <img src={Logo} width="38" alt=""/>
+                    <img src={Logo} width="38" height="38" alt=""/>
                     <p>LOADING</p>
                 </div>
             </section>

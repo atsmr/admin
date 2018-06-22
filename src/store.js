@@ -46,13 +46,27 @@ let ACTIONS = {
             },
         },
         ...state
+    }),
+    CHANGE_PATH: ({ s, ...state }, { string }) => ({
+        s: {
+            ...s,
+            path: string,
+        },
+        ...state
+    }),
+    LOGIN: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            login: bool,
+        },
+        ...state
     })
 }
 
 const INITIAL = {
     s: {
-        login: true,
-        page: "/",
+        login: false,
+        path: "/",
         visibility: {
             workSpace: false,
             personalMenu: false

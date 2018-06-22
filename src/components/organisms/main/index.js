@@ -35,15 +35,17 @@ class Main extends Component {
             if (e.ctrlKey && e.keyCode == 78) {
                 that.props.changeMainSec([-1440, 0])
                 that.props.currentHeaderNav([35,120])
+                that.props.changePath('/docs/')
             } else if(e.ctrlKey && e.keyCode == 80) {
                 that.props.changeMainSec([0, 1440])
                 that.props.currentHeaderNav([45,25])
+                that.props.changePath('/')
             }
         }
     }
     render() {
         return (
-            <div class={style.switcher}>
+            <div class={style.switcher} style={ this.props.s.path === '/' ? { background: '#101010'} : { background: '#fff'}}>
                 <div id="main" class={style.wrap}>
                     <section style={{left: this.props.s.position.main[0] + 'px'}}>
                         <div class={style.inr}>
@@ -51,13 +53,13 @@ class Main extends Component {
                             {this.props.children}
                         </div>
                     </section>
-                    <section class={style.test} style={{left: this.props.s.position.main[1] + 'px'}}>
+                    <section style={{left: this.props.s.position.main[1] + 'px'}}>
                         <div class={style.inr}>
                         </div>
                     </section>
                 </div>
             </div>
-            )
-}
+       )
+    }
 }
 export default Main;

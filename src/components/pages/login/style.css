@@ -96,10 +96,8 @@ input:focus {
     outline: 0;
 }
 .i p {
-    font-size: 11px;
     margin: 50px 0 0 0;
     letter-spacing: 1px;
-    color: #666;
 }
 .i p a {
     margin-left: 5px;
@@ -110,63 +108,21 @@ input:focus {
     color: #3AA0D9;
     border-bottom: 1px solid #3AA0D9
 }
-.unlock {
-    margin-top: 50px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    height: 50px;
-    width: 50px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background: #fff;
-    z-index: 9999;
-    cursor: pointer;
-}
-.unlock:hover {
-    background: #fafafa;
-}
-.unlock img {
-    width: 30px;
-    margin: 0;
-    height: auto
-}
-.unlock img.load {
-    animation: spinner infinite 2s linear;
-}
 .i section {
     display: flex
 }
+
 .loginSec {
     width: 100%;
 }
-.signInSecActive {
-    display: block;
-    width: 100%;
-}
-.signInSecDisActive {
-    display: none
-}
-.signups h2 {
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    text-transform: uppercase;
-    font-weight: bold
-}
-.signups hr {
-    border-bottom: 1px solid #fafafa;
-    border-top: none;
-    margin-top: 30px;
-}
+
 @keyframes spinner {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
+.errorMassage {
+    color: #D9414B;
+    line-height: 1.4;
+    font-size: 12px;
+}

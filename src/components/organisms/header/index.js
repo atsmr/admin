@@ -37,21 +37,25 @@ class Header extends Component {
                 lists[i].children[0].classList.add('on')
                 w = lists[i].children[0].clientWidth
                 p += 25
+                txt.toLowerCase() === 'works' ? this.props.changePath('/') : this.props.changePath('/' + txt.toLowerCase() + '/')
             } else if (i == 0) {
                 lists[i].children[0].classList.remove('on')
                 p += lists[i].children[0].clientWidth + 50
+                txt.toLowerCase() === 'works' ? this.props.changePath('/') : this.props.changePath('/' + txt.toLowerCase() + '/')
             }
         }
         this.props.currentHeaderNav([w,p])
     }
+
 	render() {
+        console.log(this.props.s)
 		return (
-            <header class={ this.props.s.page === "/" ? style.dark : style.light } style={this.props.s.visibility.workSpace ? { height: '100%'} : null}>
+            <header class={this.props.s.path == "/" ? style.dark : style.light } style={this.props.s.visibility.workSpace ? { height: '100%'} : null}>
                 <div class={style.inr}>
                     <img class={style.logo} src={LOGO} width="26" height="26" alt="FamilyLand, Inc." />
                     <nav>
                         <ul>
-                            <li><Link activeClassName={style.active} onclick={this.current} href="/">Works</Link></li><li><Link activeClassName={style.active} onclick={this.current} activeClassName={style.active} href="/profile/">Docs</Link></li><li class={style.current} style={{ left: this.props.s.position.headerNav[1] + 'px', width: this.props.s.position.headerNav[0] + 'px'}}></li>
+                            <li><Link activeClassName={style.active} onclick={this.current} href="/">Works</Link></li><li><Link activeClassName={style.active} onclick={this.current} activeClassName={style.active} href="/docs/">Docs</Link></li><li class={style.current} style={{ left: this.props.s.position.headerNav[1] + 'px', width: this.props.s.position.headerNav[0] + 'px'}}></li>
                         </ul>
                     </nav>
                     <button class={style.add} onclick={this.openWorkSpace}>

@@ -6,14 +6,15 @@
 }
 
 .i img {
-    animation: spinner infinite 10s linear;
+    animation: spinner infinite 2s linear;
 }
 
 .i p {
+    font-family: 'Lato', san-serif;
     font-size: 11px;
-    color: #000;
+    color: #fff;
     font-weight: bold;
-    margin: 6px 0 0 0;,
+    margin: 9px 0 0 0;
     letter-spacing: 2px;
 }
 

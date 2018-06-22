@@ -27,6 +27,7 @@
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
+    "firebase": "^5.1.0",
     "preact": "^8.2.6",
     "preact-compat": "^3.18.0",
     "preact-redux": "^2.0.3",
