@@ -19,7 +19,7 @@ import config from '../conf/firebase.js'
 class App extends Component {
     constructor(props) {
         super(props)
-        this.staet = {
+        this.state = {
             checkLogin: false
         }
     }
@@ -32,13 +32,21 @@ class App extends Component {
                 console.log(user.name)
                 that.setState({checkLogin: true})
             } else {
+                that.setState({checkLogin: true})
             }
         })
+        ///firebase.auth().signOut().then(function() {
+        ///  // Sign-out successful.
+        ///}).catch(function(error) {
+        ///  // An error happened.
+        ///});
     }
 
     handleRoute = e => { this.currentUrl = e.url; };
 	render() {
-        if(this.props.s.login) {
+        console.log(this.state.checkLogin)
+        console.log(this.props.s.login)
+        if(this.props.s.login && this.state.checkLogin ) {
             return (
                 <div id="app">
                     <Header />
@@ -53,7 +61,7 @@ class App extends Component {
                     <PersonalMenu />
                 </div>
                 )
-        } else if(this.state.checkLogin) {
+        } else if (this.state.checkLogin && !this.props.s.login ) {
             return <Login />
         } else {
             return <Loading />
