@@ -14,6 +14,10 @@
     display: none;
 }
 .rOpen {
+<<<<<<< HEAD
+=======
+    z-index:2;
+>>>>>>> master
     display: block
 }
 .wrap {
@@ -40,8 +44,13 @@
 }
 .rOpen .button button:before {
     transform: rotate(45deg);
+<<<<<<< HEAD
     top: 19.5px;
     left: 12px;
+=======
+    top: 19px;
+    left: 11.5px;
+>>>>>>> master
     background: #fff;
 }
 .rOpen .button {
@@ -51,8 +60,13 @@
     background: #000;
 }
 .rOpen .button button:after {
+<<<<<<< HEAD
     top: 19.5px;
     left: 12px;
+=======
+    top: 19px;
+    left: 11.5px;
+>>>>>>> master
     transform: rotate(-45deg);
     background: #fff;
 }
@@ -81,7 +95,11 @@
     border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
+<<<<<<< HEAD
     background: #fff;
+=======
+    background: #e6e6e6;
+>>>>>>> master
     width: 40px;
     height: 40px;
     -moz-transition: all 0.25s ease;
@@ -91,9 +109,19 @@
 }
 
 .button button:hover {
+<<<<<<< HEAD
     cursor: pointer
 }
 
+=======
+    background: #fff;
+    cursor: pointer
+}
+
+.rOpen .button button:hover {
+    background: #101010;
+}
+>>>>>>> master
 .button button:before {
     content: '';
     width: 17px;

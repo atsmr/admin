@@ -1,0 +1,23 @@
+.side {
+    font-family: 'playfiar Display', serif;
+    width: 178px;
+    height: calc(100% - 48px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 60px 60px 0 60px;
+}
+.side nav ul li {
+    display: block;
+    line-height: 2.4;
+}
+.side nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #999;
+    display: block;
+}
+.side nav ul li a:hover {
+    color: #ccc;
+}
