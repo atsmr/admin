@@ -11,7 +11,7 @@ import Loading from '../components/pages/loading';
 import { connect } from 'preact-redux'
 import reducer from '../reducer'
 import * as actions from '../actions'
-import config from '../conf/firebase.js'
+import config from '../conf/firebase'
 import firebase from "firebase/app";
 import 'firebase/firestore';
 
@@ -23,6 +23,7 @@ class App extends Component {
         firebase.initializeApp(config)
         this.db = firebase.firestore()
         this.db.settings({timestampsInSnapshots: true})
+
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let uid = user.uid
@@ -70,15 +71,16 @@ class App extends Component {
                 )
         } else if (this.state.checkLogin && !this.props.s.login ) {
             return <Login />
-            } else {
-                return <Loading />
-                }
+        } else {
+            return <Loading />
+       }
     }
 }
 
 export default App
 
 //that.db.collection('people').doc().set(doc.data())
+
 //firebase.auth().signOut().then(function() {
 //  // Sign-out successful.
 //}).catch(function(error) {
