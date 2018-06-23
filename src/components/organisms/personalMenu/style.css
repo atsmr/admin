@@ -41,8 +41,8 @@
 }
 .rOpen .button button:before {
     transform: rotate(45deg);
-    top: 19.5px;
-    left: 12px;
+    top: 19px;
+    left: 11.5px;
     background: #fff;
 }
 .rOpen .button {
@@ -52,8 +52,8 @@
     background: #000;
 }
 .rOpen .button button:after {
-    top: 19.5px;
-    left: 12px;
+    top: 19px;
+    left: 11.5px;
     transform: rotate(-45deg);
     background: #fff;
 }
