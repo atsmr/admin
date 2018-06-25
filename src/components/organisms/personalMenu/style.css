@@ -37,25 +37,25 @@
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
     height: calc(100% - 48px);
-    background: #101010;
+    background: #000;
 }
 .rOpen .button button:before {
     transform: rotate(45deg);
     top: 19px;
-    left: 11.5px;
+    left: 11px;
+    background: #fff;
+}
+.rOpen .button button:after {
+    top: 19px;
+    left: 11px;
+    transform: rotate(-45deg);
     background: #fff;
 }
 .rOpen .button {
     top: 40px;
 }
 .rOpen .button button {
-    background: #000;
-}
-.rOpen .button button:after {
-    top: 19px;
-    left: 11.5px;
-    transform: rotate(-45deg);
-    background: #fff;
+    background: #d9414b;
 }
 .rOpen thead {
     background: #101010;
@@ -97,7 +97,7 @@
 }
 
 .rOpen .button button:hover {
-    background: #101010;
+    background: #d9414b;
 }
 .button button:before {
     content: '';

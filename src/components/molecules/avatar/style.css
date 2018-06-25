@@ -1,0 +1,31 @@
+.r {
+    display: flex;
+    position: absolute;
+    bottom: 49px;
+    left: 60px;
+}
+.r img {
+    border: 1px solid #fff;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+.r .info {
+    padding: 1.5px 3px 1.5px 10px;
+}
+.r .title {
+    font-size: 11px;
+    line-height: 1;
+    color: #333
+}
+.r .name {
+    margin-top: 2px;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 1.4px;
+    color: #454545
+}

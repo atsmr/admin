@@ -1,23 +1,52 @@
 .side {
     font-family: 'playfiar Display', serif;
-    width: 178px;
+    width: 250px;
     height: calc(100% - 48px);
     position: absolute;
     top: 0;
     left: 0;
-    padding: 60px 60px 0 60px;
+}
+.inr {
+    position: relative
 }
 .side nav ul li {
     display: block;
     line-height: 2.4;
 }
 .side nav ul li a {
+    position: absolute;
     text-decoration: none;
     font-size: 18px;
     letter-spacing: 1px;
-    color: #999;
+    color: #666;
     display: block;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+.side nav ul li.on a {
+    color: #fff;
 }
 .side nav ul li a:hover {
     color: #ccc;
+}
+.side nav ul li.on a:hover {
+    color: #fff;
+}
+.currentBar {
+    background: rgba(255,255,255,1);
+    height: 16px;
+    width: 42px;
+    position: absolute;
+    border-top-right-radius: 40px;
+    -moz-border-top-right-radius: 40px;
+    -webkit-border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    -moz-border-bottom-right-radius: 40px;
+    -webkit-border-bottom-right-radius: 40px;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
 }

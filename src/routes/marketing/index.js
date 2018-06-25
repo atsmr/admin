@@ -2,11 +2,11 @@ import { h } from 'preact';
 import style from './style';
 import ContentsHeader from '../../components/molecules/contentsHeader'
 
-const Home = () => (
+const Marketing = () => (
 	<div class={style.home}>
-        <ContentsHeader title="Dashboard" />
+        <ContentsHeader title="Marketing" />
 		<p>This is the Home component.</p>
 	</div>
 );
 
-export default Home;
+export default Marketing;
