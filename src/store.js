@@ -7,6 +7,16 @@ let ACTIONS = {
         },
         ...state
     }),
+    OPEN_SEARCH: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            visibility: {
+                ...s.visibility,
+                search: !bool
+            },
+        },
+        ...state
+    }),
     OPEN_PERSONAL_MENU: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
@@ -81,6 +91,7 @@ const INITIAL = {
         path: "/",
         visibility: {
             workSpace: false,
+            search: false,
             personalMenu: false
         },
         position: {

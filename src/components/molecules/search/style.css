@@ -1,0 +1,28 @@
+.r {
+    position: fixed;
+    z-index: 999;
+    top: calc(-100% + -40px);
+    height: calc(100% - 48px);
+    left: 0;
+    width: 100%;
+    transition: all .1s ease;
+    -o-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -webkit-transition: all .1s ease;
+    background: rgba(0,0,0,.85);
+    position: relative;
+}
+.r input[type="text"] {
+    top: calc(50% - 28px);
+    width: calc(100% - 2px);
+    left: 0;
+    right: 0;
+    position: absolute;
+    text-align: center;
+    font-family: 'Playfil Display', serif;
+    background: rgba(0,0,0,0);
+    color: #fff;
+    font-size: 48px;
+    border: 0;
+    outline: 0;
+}
