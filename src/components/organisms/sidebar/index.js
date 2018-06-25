@@ -7,6 +7,7 @@ import * as actions from '../../../actions'
 import reducer from '../../../reducer'
 //import * as firebase from 'firebase'
 import Avatar from '../../molecules/avatar'
+import Punch from '../../molecules/punch'
 
 @connect(reducer, actions)
 class Sidebar extends Component {
@@ -175,6 +176,7 @@ class Sidebar extends Component {
                     </nav>
                 </div>
                 <Avatar />
+                <Punch />
             </aside>
             )
         }
