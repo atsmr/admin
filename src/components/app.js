@@ -60,7 +60,6 @@ class App extends Component {
     handleRoute = e => { this.currentUrl = e.url; };
 
     render() {
-        console.log(this.props)
         if(this.props.s.login && this.state.checkLogin ) {
             return (
                 <div id="app">
