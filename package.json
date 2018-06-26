@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "private": true,
     "name": "admin",
     "version": "0.0.0",
@@ -17,47 +16,6 @@
     },
     "eslintIgnore": [
         "build/*"
-=======
-  "private": true,
-  "name": "admin",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
-    "lint": "eslint src",
-    "test": "jest ./tests"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor"
-  },
-  "eslintIgnore": [
-    "build/*"
-  ],
-  "devDependencies": {
-    "eslint": "^4.9.0",
-    "eslint-config-synacor": "^2.0.2",
-    "identity-obj-proxy": "^3.0.0",
-    "if-env": "^1.0.0",
-    "jest": "^21.2.1",
-    "preact-cli": "^2.1.0",
-    "preact-render-spy": "^1.2.1"
-  },
-  "dependencies": {
-    "firebase": "^5.1.0",
-    "preact": "^8.2.6",
-    "preact-compat": "^3.18.0",
-    "preact-redux": "^2.0.3",
-    "preact-router": "^2.5.7",
-    "redux": "^4.0.0"
-  },
-  "jest": {
-    "verbose": true,
-    "setupFiles": [
-      "<rootDir>/src/tests/__mocks__/browserMocks.js"
->>>>>>> master
     ],
     "devDependencies": {
         "eslint": "^4.9.0",
@@ -100,3 +58,4 @@
         }
     }
 }
+
