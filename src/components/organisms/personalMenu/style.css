@@ -130,7 +130,15 @@
 .calendar {
     height: calc(100% - 140px)
 }
+.calendar header {
+    height: 95px;
+    position: relative;
+    text-align: center;
+}
 .calendar header h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 40px 0 20px;
     color: #fff;
     font-size: 33px;
@@ -163,4 +171,36 @@
 }
 .calendar table tbody td.holiday {
     background: #161616;
+}
+.gn {
+    padding: 50px 0 0 0;
+}
+.gn ul {
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border: 1px solid #222;
+}
+.gn ul li:hover {
+    cursor: pointer
+}
+.gn ul li {
+    font-weight: bold;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    font-family: 'Helvetica Nue', Helvetica, san-serif;
+    font-size: 13px;
+    padding: 6px 40px;
+    letter-spacing: .7px;
+    border-right: 1px solid #222;
+    display: inline-block
+}
+.gn ul li:last-child {
+    border: none;
+}
+.table {
 }

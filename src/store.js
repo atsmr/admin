@@ -92,7 +92,7 @@ const INITIAL = {
         visibility: {
             workSpace: false,
             search: false,
-            personalMenu: false
+            personalMenu: true // now
         },
         position: {
             main: [],
