@@ -1,0 +1,41 @@
+.r {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    background: #090909;
+    width: 220px;
+    height: 40px;
+    border-top-right-radius: 40px;
+    -moz-border-top-right-radius: 40px;
+    -webkit-border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    -moz-border-bottom-right-radius: 40px;
+    -webkit-border-bottom-right-radius: 40px;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+.r:hover {
+    cursor: pointer
+}
+.timer {
+    position: absolute;
+    top: 4px;
+    left: 60px;
+    font-family: 'Lato', serif;
+    font-weight: lighter;
+    font-size: 31px;
+}
+.right {
+    text-align: center;
+    min-width: 40px;
+}
+.w {
+    position: relative;
+}
+.w img {
+    position: absolute;
+    top: 12px;
+    left: 25px;
+}

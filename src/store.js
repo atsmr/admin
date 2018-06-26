@@ -8,6 +8,7 @@ let ACTIONS = {
         ...state
     }),
 <<<<<<< HEAD
+<<<<<<< HEAD
     OPEN_PERSONAL_NAV: ({ s, ...state }, { bool }) => ({
         s: {
             visibility: {
@@ -17,6 +18,18 @@ let ACTIONS = {
         },
         ...s
 =======
+=======
+    OPEN_SEARCH: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            visibility: {
+                ...s.visibility,
+                search: !bool
+            },
+        },
+        ...state
+    }),
+>>>>>>> master
     OPEN_PERSONAL_MENU: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
@@ -99,7 +112,8 @@ const INITIAL = {
         path: "/",
         visibility: {
             workSpace: false,
-            personalMenu: false
+            search: false,
+            personalMenu: true // now
         },
         position: {
             main: [],

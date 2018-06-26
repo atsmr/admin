@@ -1,3 +1,9 @@
+export function openSearch(bool) {
+    return {
+        type: 'OPEN_SEARCH',
+        bool
+    }
+}
 export function openWorkSpace(bool) {
     return {
         type: 'OPEN_WORK_SPACE',

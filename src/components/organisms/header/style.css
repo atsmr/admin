@@ -20,13 +20,14 @@
 	height: 48px;
 >>>>>>> master
 	padding: 0;
-	background: #101010;
+	background: #000;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 	z-index: 50;
     transition: all.25s ease;
     -o-transition: all .25s ease;
     -moz-transition: all .25s ease;
     -webkit-transition: all .25s ease;
+    z-index: 999;
 }
 
 .dark nav {
@@ -92,6 +93,7 @@ nav ul {
     -o-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -webkit-transition: all .2s ease;
+    z-index: 999;
 }
 .light nav {
 	height: 48px;
