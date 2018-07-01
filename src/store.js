@@ -87,7 +87,7 @@ let ACTIONS = {
 
 const INITIAL = {
     s: { // States
-        login: false,
+        login: true,
         path: "/",
         visibility: {
             workSpace: false,

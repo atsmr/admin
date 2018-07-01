@@ -61,3 +61,18 @@
     -moz-transition: all .3s ease;
     -webkit-transition: all .3s ease;
 }
+.secondNav {
+    animation:  bottomUp 1.2s both;
+    opacity: 0;
+}
+
+@keyframes bottomUp {
+    0% {
+        opacity: 0;
+        transform: translateY(500px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}

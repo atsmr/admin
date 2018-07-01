@@ -57,7 +57,7 @@ class App extends Component {
         }
     }
 
-    handleRoute = e => { this.currentUrl = e.url; };
+    handleRoute = e => { this.currentUrl = e.url }
 
     render() {
         if(this.props.s.login && this.state.checkLogin ) {
