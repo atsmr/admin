@@ -27,11 +27,26 @@ let ACTIONS = {
         },
         ...state
     }),
-    OPEN_WORK_SPACE: ({ s, ...state }, { bool }) => ({
+    OPEN_ADD_LIST: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
             visibility: {
                 ...s.visibility,
+                addList: !bool
+            },
+        },
+        ...state
+    }),
+    OPEN_WORK_SPACE: ({ s, ...state }, { bool, name }) => ({
+        s: {
+            ...s,
+            type: {
+               ...s.type,
+                workSpace: name
+            },
+            visibility: {
+                ...s.visibility,
+                addList: false,
                 workSpace: !bool
             },
         },
@@ -87,12 +102,16 @@ let ACTIONS = {
 
 const INITIAL = {
     s: { // States
-        login: false,
+        login: true,
         path: "/",
+        type: {
+            workSpace: null
+        },
         visibility: {
             workSpace: false,
             search: false,
-            personalMenu: true // now
+            personalMenu: false,
+            addList: false
         },
         position: {
             main: [],

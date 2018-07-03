@@ -14,9 +14,11 @@ class Button extends Component {
 	}
 	render() {
 		return (
-		<button class={ this.props.s.test ? style.dark: style.light }><img class={style.add} src={ADD} width="2" height="2" alt="+" />{this.props.title}</button>
-		)
-	}
+            <button class={style.r} style={ this.props.s.visibility.addList ? {right: 115} : {right: 60}} onclick={() => this.props.openAddList(this.props.s.visibility.addList)}>
+                <img src={ICON_ADD} width="20" height="20" alt="FamilyLand, Inc." style={this.props.s.visibility.addList ? {transform: 'rotate(-45deg)' } : null } />
+            </button>
+            )
+}
 }
 
 export default Button;

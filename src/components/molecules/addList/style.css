@@ -1,0 +1,70 @@
+.r {
+    color: #333;
+    background: #fff;
+    width: 160px;
+    position: fixed;
+    bottom: 100px;
+    z-index: 1;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+
+.r ul {
+    padding: 0;
+    position: relative;
+    z-index: 9999;
+}
+
+.r ul:after {
+    background: #fff;
+    content: '';
+    width: 16px;
+    height: 16px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    bottom: -8px;
+    right: 50%;
+    margin-right: -8px;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: -1
+}
+
+.r ul li {
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: center;
+    display: block;
+    padding: 16px 0
+}
+.r ul li:first-child {
+    border-top-left-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-top-right-radius: 7px;
+}
+.r ul li:last-child {
+    border-bottom-left-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    -webkit-border-bottom-right-radius: 7px;
+    -moz-border-bottom-right-radius: 7px;
+    border: none
+}
+.r ul li:hover {
+    background: #fafafa
+}

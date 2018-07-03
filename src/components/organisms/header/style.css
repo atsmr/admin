@@ -120,16 +120,25 @@ nav ul {
     height: 48px;
     width: 48px;
     position: fixed;
-    right: 60px;
     bottom: 22px;
     display: inline-block;
     background: #fff;
     border: 0;
 	box-shadow: 0 0 15px rgba(0, 0, 0, .55);
+    transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 .light .add:hover {
     background: #F9BE32;
     cursor: pointer
+}
+.dark .add img, .light .add img {
+    transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 .dark .add {
     vertical-align: middle;
@@ -139,12 +148,15 @@ nav ul {
     height: 48px;
     width: 48px;
     position: fixed;
-    right: 60px;
     bottom: 22px;
     display: inline-block;
     background: #fff;
     border: 0;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 .dark .add:hover {
     cursor: pointer

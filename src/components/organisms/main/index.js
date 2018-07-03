@@ -40,7 +40,7 @@ class Main extends Component {
                 <div id="main" class={style.wrap}>
                     <section style={{left: this.props.s.position.main[0] + 'px', position: 'relative'}}>
                         <div class={style.inr}>
-                            <SideBar />
+                            <SideBar/>
                             <Contents>
                                 {this.props.children}
                             </Contents>

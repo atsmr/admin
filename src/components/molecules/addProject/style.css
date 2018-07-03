@@ -1,0 +1,125 @@
+.r {
+    height: 100%;
+}
+.r h1 {
+    font-size: 33px;
+    font-weight: 600;
+    color: #333;
+}
+.r span {
+    margin-right: 5px;
+    font-family: 'Lato', san-serif;
+    font-weight: 100;
+}
+.r .in {
+    padding: 40px 60px;
+    width: calc(100% - 230px);
+    height: calc(100% - 80px);
+    overflow: scroll
+}
+.r .title {
+    margin-top: 30px;
+}
+.r .title input[type="text"] {
+    border: 0;
+    width: 100%;
+    font-size: 28px;
+    position: relative;
+}
+
+.r .description {
+    margin-top: 30px;
+}
+.r .description textarea {
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    min-height: 200px;
+}
+.r .wrap {
+    display: flex;
+    overflow: scroll;
+    height: 100%;
+}
+.r .tasks {
+    background: #f8f8f8;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.r .tasks header{
+    padding: 40px 60px 20px;
+    position: absolute;
+    width: calc(100% - 120px);
+    left: 0;
+    top: 0;
+}
+.r .tasks header h1 {
+    font-size: 22px;
+}
+.r .tasks .items {
+    position: absolute;
+    overflow: scroll;
+    height: calc(100% - 82px);
+    width: 100%;
+    top: 82px;
+}
+.r .tasks .items ul li:hover {
+}
+.r .tasks .items ul li {
+    padding: 0 60px;
+}
+.r .tasks .items ul li span {
+    border-bottom: 1px solid #e6e6e6
+}
+.dnd {
+    width: 30px;
+}
+.r .tasks .items ul li .input {
+    border-bottom: 1px solid #e6e6e6
+}
+.r .tasks .items ul li input[type="text"] {
+    background: transparent;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 12px 0;
+    font-size: 14px;
+}
+.assigned {
+    margin-top: 20px;
+    color: #999;
+    font-size: 11px;
+    display: flex;
+}
+.assigned p {
+    color: #ccc;
+    font-weight: bold;
+    padding: 13px 10px 0 0;
+}
+.assigned ul li {
+    align-items: flex-start;
+    border: 1px solid #fff;
+    padding: 3px 18px 3px 3px;
+    display: flex
+}
+.assigned ul li:hover {
+    border: 1px solid #333;
+    border-radius: 60px;
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    cursor: pointer;
+}
+.assigned ul li .name {
+    font-size: 14px;
+    color: #333;
+    padding: 7px 0 0 7px;
+}
+.assigned img {
+    max-width: 28px;
+    height: auto;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}

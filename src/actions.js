@@ -4,9 +4,16 @@ export function openSearch(bool) {
         bool
     }
 }
-export function openWorkSpace(bool) {
+export function openWorkSpace(bool, name) {
     return {
         type: 'OPEN_WORK_SPACE',
+        name,
+        bool
+    }
+}
+export function openAddList(bool) {
+    return {
+        type: 'OPEN_ADD_LIST',
         bool
     }
 }
