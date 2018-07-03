@@ -10,13 +10,17 @@ import Profile from 'async!../routes/profile';
 import Docs from 'async!../routes/docs';
 import Main from '../components/organisms/main';
 import PersonalMenu from '../components/organisms/personalMenu';
+import WorkSpace from '../components/organisms/workSpace';
 import Login from '../components/pages/login';
 import Loading from '../components/pages/loading';
 import Search from '../components/molecules/search';
+import AddList from '../components/molecules/addList';
+import ButtonAdd from '../components/atoms/buttonAdd';
 import { connect } from 'preact-redux'
 import reducer from '../reducer'
 import * as actions from '../actions'
 import config from '../conf/firebase'
+
 import firebase from "firebase/app";
 import 'firebase/firestore';
 
@@ -77,6 +81,9 @@ class App extends Component {
                             <Support path="/support/" />
                         </Router>
                     </Main>
+                    <WorkSpace />
+                    <ButtonAdd />
+                    <AddList />
                     <PersonalMenu />
                 </div>
                 )
