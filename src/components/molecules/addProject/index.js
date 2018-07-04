@@ -4,17 +4,34 @@ import { connect } from 'preact-redux'
 import style from './style.css';
 import reducer from '../../../reducer'
 import * as actions from '../../../actions'
+import Input from '../../../components/atoms/input'
 
 @connect(reducer, actions)
 class AddProject extends Component {
 	constructor(props) {
 		super(props)
+        this.state = {
+            tasks: [
+                {
+                    id: 0,
+                    title: 'new title'
+                },
+                {
+                    id: 1,
+                    title: 'new second title'
+                }
+            ]
+        }
     }
     componentDidMount() {
         document.getElementById('add-task-title').focus()
     }
     render() {
-        console.log(this.props.i)
+        let Tasks = this.state.tasks.map((task) => {
+            return (
+                <Input type="editableList" placehodler={task.title}/>
+                )
+        })
         return (
             <section class={style.r}>
                 <div class={style.wrap}>
@@ -56,10 +73,7 @@ class AddProject extends Component {
                         </header>
                         <div class={style.items}>
                             <ul>
-                                <li><div class={style.dnd}></div><div class={style.input}><div class={style.check}></div><input type="text" value="" placeholder="" /><div class={style.assignee}></div></div></li>
-                                <li><div class={style.dnd}></div><div class={style.input}><div class={style.check}></div><input type="text" value="" placeholder="" /><div class={style.assignee}></div></div></li>
-                                <li><div class={style.dnd}></div><div class={style.input}><div class={style.check}></div><input type="text" value="" placeholder="" /><div class={style.assignee}></div></div></li>
-                                <li><div class={style.dnd}></div><div class={style.input}><div class={style.check}></div><input type="text" value="" placeholder="" /><div class={style.assignee}></div></div></li>
+                                {Tasks}
                             </ul>
                         </div>
                     </div>

@@ -105,10 +105,10 @@ const INITIAL = {
         login: true,
         path: "/",
         type: {
-            workSpace: null
+            workSpace: 'Project'
         },
         visibility: {
-            workSpace: false,
+            workSpace: true,
             search: false,
             personalMenu: false,
             addList: false

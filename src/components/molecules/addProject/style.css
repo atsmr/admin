@@ -76,17 +76,6 @@
 .dnd {
     width: 30px;
 }
-.r .tasks .items ul li .input {
-    border-bottom: 1px solid #e6e6e6
-}
-.r .tasks .items ul li input[type="text"] {
-    background: transparent;
-    width: 100%;
-    border: 0;
-    outline: 0;
-    padding: 12px 0;
-    font-size: 14px;
-}
 .assigned {
     margin-top: 20px;
     color: #999;
