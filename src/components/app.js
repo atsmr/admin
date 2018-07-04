@@ -4,6 +4,7 @@ import Header from './organisms/header';
 import Home from 'async!../routes/home';
 import Projects from 'async!../routes/projects';
 import Marketing from 'async!../routes/marketing';
+import MarketingAnalysis from 'async!../routes/marketing/analysis';
 import Management from 'async!../routes/management';
 import Support from 'async!../routes/support';
 import Profile from 'async!../routes/profile';
@@ -77,6 +78,7 @@ class App extends Component {
                             <Docs path="/docs/" />
                             <Projects path="/projects/" />
                             <Marketing path="/marketing/" />
+                            <MarketingAnalysis path="/marketing/analysis" />
                             <Management path="/management/" />
                             <Support path="/support/" />
                         </Router>
