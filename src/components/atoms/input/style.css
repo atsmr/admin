@@ -37,6 +37,10 @@
 .title {
     width: 100%;
 }
+
+.title input[type="text"]::-webkit-input-placeholder, .title input[type="text"]::-moz-placeholder {
+    color: #ccc
+}
 .title input[type="text"]:disabled {
     cursor: pointer
 }

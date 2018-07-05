@@ -5,22 +5,27 @@ import style from './style.css';
 import reducer from '../../../reducer'
 import * as actions from '../../../actions'
 import Input from '../../../components/atoms/input'
+import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 
 @connect(reducer, actions)
 class AddProject extends Component {
 	constructor(props) {
 		super(props)
+        this.onKeyChange = this.onKeyChange.bind(this)
         this.state = {
             tasks: [
                 {
-                    id: 0,
-                    title: 'new title'
-                },
-                {
-                    id: 1,
+                    id: 'fdaj2j3rhrh32j32j',
                     title: 'new second title'
                 }
             ]
+        }
+    }
+    onKeyChange = (e) => {
+        if(e.keyCode === 13) {
+            this.setState(s => ({
+                tasks: [...s.tasks, {id: 4, title: 'hoge'} ]
+            }))
         }
     }
     componentDidMount() {
@@ -29,7 +34,7 @@ class AddProject extends Component {
     render() {
         let Tasks = this.state.tasks.map((task) => {
             return (
-                <Input type="editableList" placehodler={task.title}/>
+                <Input type="editableList" key={task.id} placehodler={task.title} onkeydown={this.onKeyChange} />
                 )
         })
         return (
@@ -46,7 +51,7 @@ class AddProject extends Component {
                                 <div>
                                     <ul>
                                         <li>
-                                            <img src={this.props.i.thumbnail} width="32" height="32" alt="" />
+                                            <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" />
                                             <p class={style.name}>{this.props.i.firstName + ' ' + this.props.i.lastName}</p>
                                         </li>
                                     </ul>

@@ -24,7 +24,6 @@ class Input extends Component {
         setTimeout(() => {
             e.target.focus()
         }, 1)
-        console.log(e.target)
     }
     onBlur = (e) => {
         this.setState({ disabled: true })
@@ -38,7 +37,7 @@ class Input extends Component {
                         <div class={style.avatar}>
                             { this.props.i.thumbnail ? <img src={this.props.i.thumbnail} width="26" height="26" alt="" /> : <img src={UNKNOWN} width="26" height="26" alt="" /> }
                         </div>
-                        <div class={style.title}><input type="text" placeholder={this.state.placeholder} disabled={this.state.disabled} onblur={this.onBlur}/></div>
+                        <div class={style.title}><input key={this.props.key} type="text" placeholder={this.state.placeholder ? this.state.placeholder : 'Write a task name'} onkeydown={this.props.onkeydown} disabled={this.state.disabled} onblur={this.onBlur}/></div>
                         <div class={style.check}>
                             <button><img src={CHECK} width="13" height="10" alt="" /></button>
                         </div>
