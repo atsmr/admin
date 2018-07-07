@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h, Component, options } from 'preact';
 import { Link } from 'preact-router/match';
 import { connect } from 'preact-redux'
 import style from './style';
@@ -28,6 +28,14 @@ class Input extends Component {
     onBlur = (e) => {
         this.setState({ disabled: true })
     }
+    componentDidMount() {
+        this.setState({
+            disabled: false
+        })
+        setTimeout(()=> {
+            this.refs.focus()
+        },100)
+    }
     render() {
         if (this.props.type === 'editableList') {
             return (
@@ -37,7 +45,7 @@ class Input extends Component {
                         <div class={style.avatar}>
                             { this.props.i.thumbnail ? <img src={this.props.i.thumbnail} width="26" height="26" alt="" /> : <img src={UNKNOWN} width="26" height="26" alt="" /> }
                         </div>
-                        <div class={style.title}><input key={this.props.key} type="text" placeholder={this.state.placeholder ? this.state.placeholder : 'Write a task name'} onkeydown={this.props.onkeydown} disabled={this.state.disabled} onblur={this.onBlur}/></div>
+                        <div class={style.title}><input ref={c => {this.refs=c} } type="text" placeholder={this.state.placeholder ? this.state.placeholder : 'Write a task name'} onkeydown={this.props.onkeydown} disabled={this.state.disabled} onblur={this.onBlur}/></div>
                         <div class={style.check}>
                             <button><img src={CHECK} width="13" height="10" alt="" /></button>
                         </div>

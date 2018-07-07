@@ -37,6 +37,7 @@
     margin-top: 30px;
 }
 .r .description textarea {
+    line-height: 1.8;
     resize: none;
     font-size: 14px;
     border: 0;

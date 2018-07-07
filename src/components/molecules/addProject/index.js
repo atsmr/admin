@@ -6,32 +6,37 @@ import reducer from '../../../reducer'
 import * as actions from '../../../actions'
 import Input from '../../../components/atoms/input'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
+import firebase from "firebase/app";
+import 'firebase/firestore';
 
 @connect(reducer, actions)
 class AddProject extends Component {
 	constructor(props) {
 		super(props)
         this.onKeyChange = this.onKeyChange.bind(this)
+        this.db = firebase.firestore()
         this.state = {
             tasks: [
                 {
-                    id: 'fdaj2j3rhrh32j32j',
-                    title: 'new second title'
+                    id: this.db.collection('tasks').doc().id,
+                    title: ''
                 }
             ]
         }
     }
     onKeyChange = (e) => {
-        if(e.keyCode === 13) {
+        if(e.keyCode === 13 && e.target.value !== null) {
             this.setState(s => ({
-                tasks: [...s.tasks, {id: 4, title: 'hoge'} ]
+                tasks: [...s.tasks, {id: this.db.collection('tasks').doc().id, title: e.target.value} ]
             }))
         }
     }
     componentDidMount() {
         document.getElementById('add-task-title').focus()
     }
+
     render() {
+        console.log(this.state.tasks)
         let Tasks = this.state.tasks.map((task) => {
             return (
                 <Input type="editableList" key={task.id} placehodler={task.title} onkeydown={this.onKeyChange} />
@@ -77,7 +82,7 @@ class AddProject extends Component {
                             <h1>Tasks</h1>
                         </header>
                         <div class={style.items}>
-                            <ul>
+                            <ul id="items">
                                 {Tasks}
                             </ul>
                         </div>
