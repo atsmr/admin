@@ -34,7 +34,7 @@ class Input extends Component {
         })
         setTimeout(()=> {
             this.refs.focus()
-        },100)
+        }, 1)
     }
     render() {
         if (this.props.type === 'editableList') {

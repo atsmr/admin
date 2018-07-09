@@ -108,7 +108,7 @@ const INITIAL = {
             workSpace: 'Project'
         },
         visibility: {
-            workSpace: true,
+            workSpace: false,
             search: false,
             personalMenu: false,
             addList: false

@@ -19,6 +19,7 @@ class AddProject extends Component {
             tasks: [
                 {
                     id: this.db.collection('tasks').doc().id,
+                    category: null,
                     title: ''
                 }
             ]
@@ -36,7 +37,6 @@ class AddProject extends Component {
     }
 
     render() {
-        console.log(this.state.tasks)
         let Tasks = this.state.tasks.map((task) => {
             return (
                 <Input type="editableList" key={task.id} placehodler={task.title} onkeydown={this.onKeyChange} />

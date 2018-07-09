@@ -1,0 +1,38 @@
+.r {
+    margin-top: 20px;
+    width: 100%;
+    border-bottom: 1px solid #111;
+}
+.r ul {
+    position: relative;
+}
+
+.r ul li {
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-right: 50px;
+    padding: 18px 0 18px 0;
+    color: #333;
+}
+.r ul li:hover {
+    cursor: pointer
+}
+.r ul li.current {
+    color: #fff;
+    font-weight: bold;
+    bottom: 0;
+    left: 0;
+}
+.r ul li.line {
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    position: absolute;
+    background: #fff;
+    height: 1px!important;
+    padding: 0;
+    margin: 0;
+    bottom: -1px
+}
