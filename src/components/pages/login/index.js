@@ -37,7 +37,7 @@ class Login extends Component {
     }
     render() {
         return (
-            <div class={style.i} style={this.state.signUp ? 'max-width: 680px': null}>
+            <div class={style.i}>
                 <section>
                     <div class={style.loginSec}>
                         <img src={Logo} alt=""/>

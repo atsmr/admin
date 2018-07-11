@@ -7,10 +7,10 @@
     height: 48px;
     width: 48px;
     position: fixed;
-    bottom: 22px;
+    bottom: 23px;
     right: 60px;
     display: inline-block;
-    border: 0;
+    border: 2px solid #fff;
 	box-shadow: 0 0 15px rgba(0, 0, 0, .55);
     transition: all .4s ease;
     -o-transition: all .4s ease;
@@ -26,9 +26,14 @@
 }
 
 .r:hover {
+    border: 2px solid #000;
     cursor: pointer
 }
 
 .r:focus {
     outline: 0;
+}
+.addText {
+    font-weight: bold;
+    font-size: 14px;
 }

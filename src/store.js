@@ -102,10 +102,10 @@ let ACTIONS = {
 
 const INITIAL = {
     s: { // States
-        login: true,
+        login: false,
         path: "/",
         type: {
-            workSpace: 'Project'
+            workSpace: ''
         },
         visibility: {
             workSpace: false,
@@ -119,7 +119,8 @@ const INITIAL = {
         },
         fetched: {
             users: false
-        }
+        },
+        set: null
     },
     u: [], // Users
     i: {}, // Current user

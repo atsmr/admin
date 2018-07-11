@@ -10,10 +10,31 @@ import * as actions from '../../../actions'
 class ButtonAdd extends Component {
 	constructor(props) {
 		super(props)
+        this.click = this.click.bind(this)
+        this.state = {
+            title: '',
+            style: {
+                opacity: 1,
+                right: 60,
+                transform: ''
+            }
+        }
 	}
+    click = (e) => {
+        if(this.props.s.visibility.addList) {
+            this.props.openAddList(this.props.s.visibility.addList)
+        } else if(!this.props.s.visibility.addList) {
+            this.props.openAddList(this.props.s.visibility.addList)
+        }
+    }
 	render() {
 		return (
-            <button onclick={() => this.props.openAddList(this.props.s.visibility.addList)} class={style.r} style={this.props.s.visibility.addList ? { right: 115, transform: 'rotate(-45deg)'} : this.props.s.visibility.workSpace ? { opacity: 0, right: 115, bottom: 600} : {right: 60}} ><img class={style.add} src={ADD} width="32" height="32" alt="Add" />{this.props.title}</button>
+            <button onclick={this.click} class={style.r}
+                style={this.props.s.visibility.addList ? {right: 115, transform: 'rotate(-45deg)'} : this.props.s.type.workSpace === 'Project' || this.props.s.type.workSpace === 'Doc' ? {right: 120, transform: '', width: 120, borderRadius: 30} : {right: 60, transform: ''} }
+            >
+                {!this.props.s.type.workSpace ? <img class={style.add} src={ADD} width="30" height="30" alt="Add" />: null}
+                {this.props.s.type.workSpace ? <p class={style.addText}>Add</p> : null}
+            </button>
 		)
 	}
 }
