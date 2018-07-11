@@ -8,6 +8,7 @@ import Input from '../../../components/atoms/input'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
+import config from'../../../conf/firebase'
 
 @connect(reducer, actions)
 class AddProject extends Component {
@@ -23,6 +24,20 @@ class AddProject extends Component {
                 }
             ]
         }
+
+    }
+    pushData = () => {
+        document.getElementById('add-task-title').focus()
+        var Data = {
+            managerName: "hideaki",
+            assignedName: "hideaki",
+            description: "hideaki",
+            dateExample: new Date(),
+            arrayTasks: [5, true, 'hello'],
+        };
+        this.db.collection('projects').doc().set(Data).catch(function(error) {
+                console.error("Error writing document: ", error);
+        });
     }
     onKeyChange = (e) => {
         if(e.keyCode === 13 && e.target.value !== null) {
@@ -32,7 +47,6 @@ class AddProject extends Component {
         }
     }
     componentDidMount() {
-        document.getElementById('add-task-title').focus()
     }
 
     render() {
@@ -66,9 +80,7 @@ class AddProject extends Component {
                                 <p class={style.label}>Assignee</p>
                                 <div>
                                     <ul>
-                                        <li>
-                                            <img src={this.props.i.thumbnail} width="32" height="32" alt="" />
-                                        </li>
+                                        <li> <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> </li>
                                     </ul>
                                 </div>
                             </div>
