@@ -1,6 +1,9 @@
 .r {
-    width: calc( 100% - 274px)!important;
-    height: calc(100% - 48px)!important;
-    left: 274px!important;
-    top: 0;
+    position: fixed;
+    right: 0;
+    top: 177px;
+    width: calc( 100% - 240px)!important;
+    height: calc(100% - 225px)!important;
+    left: 240px!important;
+    overflow: scroll
 }

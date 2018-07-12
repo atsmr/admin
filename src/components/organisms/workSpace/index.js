@@ -15,6 +15,10 @@ import AddDoc from '../../../components/molecules/addDoc'
 class WorkSpace extends Component {
     constructor(props) {
         super(props)
+        this.close = this.close.bind(this)
+    }
+    close = () => {
+        this.props.openWorkSpace(true)
     }
 
     render() {
@@ -24,7 +28,7 @@ class WorkSpace extends Component {
                     { this.props.s.type.workSpace === 'Task' && <AddTask/>}
                     { this.props.s.type.workSpace === 'Project' && <AddProject/>}
                     { this.props.s.type.workSpace === 'Doc' && <AddDoc/>}
-                    <button onclick={() => this.props.openWorkSpace(true)} class={style.close}><img class={style.closeImg} src={ADD} width="32" height="32" alt="Add" />{this.props.title}</button>
+                    <button onclick={this.close} class={style.close}><img class={style.closeImg} src={ADD} width="32" height="32" alt="Add" />{this.props.title}</button>
                 </div>
             </section>
             )

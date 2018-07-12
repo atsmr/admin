@@ -47,6 +47,12 @@ export function login(bool) {
         bool
     }
 }
+export function pushProjectData(arr) {
+    return {
+        type: 'PUSH_PROJECT_DATA',
+        arr
+    }
+}
 // Firestore
 export function fetchUsers(arr, obj) {
     return {

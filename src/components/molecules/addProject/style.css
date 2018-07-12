@@ -24,6 +24,10 @@
     color: #ccc
 }
 .r .title input[type="text"] {
+    letter-spacing: 1px;
+    color: #000;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
     border: 0;
     width: 100%;
     font-size: 28px;
@@ -44,6 +48,12 @@
     outline: 0;
     width: 100%;
     min-height: 200px;
+}
+.r .description textarea:hover {
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    background: #fafafa
 }
 .r .wrap {
     display: flex;
@@ -109,9 +119,9 @@
     cursor: pointer;
 }
 .assigned ul li .name {
-    font-size: 14px;
+    font-size: 12px;
     color: #333;
-    padding: 7px 0 0 7px;
+    padding: 9px 0 0 7px;
 }
 .assigned img {
     max-width: 28px;
@@ -119,4 +129,24 @@
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
+}
+.r .types .label {
+    margin-top: 25px;
+    color: #ccc;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 13px 10px 0 0;
+}
+.r .choosen {
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 12px 40px 12px 0;
+    display: inline-block;
+    border-bottom: 1px solid #000
+}
+.typesInr {
+    padding: 10px 0 0 0
 }

@@ -86,6 +86,13 @@ let ACTIONS = {
         },
         ...state
     }),
+    PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            login: bool,
+        },
+        ...state
+    }),
     FETCH_USERS: ({ s, ...state }, { arr, obj }) => ({
         ...state,
         s: {
@@ -105,10 +112,10 @@ const INITIAL = {
         login: true,
         path: "/",
         type: {
-            workSpace: 'Project'
+            workSpace: ''
         },
         visibility: {
-            workSpace: true,
+            workSpace: false,
             search: false,
             personalMenu: false,
             addList: false
@@ -119,7 +126,8 @@ const INITIAL = {
         },
         fetched: {
             users: false
-        }
+        },
+        set: null
     },
     u: [], // Users
     i: {}, // Current user

@@ -1,7 +1,3 @@
-.items {
-    margin: 40px 0 0 0;
-    padding: 0 40px;
-}
 .items:after {
     content: '';
     clear: both
@@ -9,26 +5,27 @@
 }
 .items li{
     padding: 30px 40px;
-    width: calc(33.33333% - 81px);
-    min-height: 180px;
+    width: calc(25% - 81px);
+    min-height: 160px;
     float: left;
-    border-left: 1px solid #111;
     transition: all .5s ease;
     -o-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -webkit-transition: all .5s ease;
 }
 .items li h2 {
-    margin-top: 15px;
-    font-size: 22px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    font-size: 18px;
     line-height: 1.3
 }
 .cat {
-    background-image: linear-gradient(to right, #b8cbb8 0%, #ee609c 66%, #ee609c 100%);
+    color: #999;
+    letter-spacing: 1px;
+    /*background-image: linear-gradient(to right, #F9BE32 0%, #F9BE32 66%, #F9BE32 100%);
     display: inline-block;
-    font-weight: bold;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;*/
     font-size: 12px;
 }
 .items li:hover {

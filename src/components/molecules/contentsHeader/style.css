@@ -1,5 +1,10 @@
 .r {
-    padding: 59px 40px 0 40px
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 280px);
+    padding: 59px 0 0 40px;
+    height: 118px;
 }
 .r h1 {
     letter-spacing: .7px;

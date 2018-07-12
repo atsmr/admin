@@ -5,6 +5,7 @@ import style from './style.css';
 import reducer from '../../../reducer'
 import * as actions from '../../../actions'
 import Input from '../../../components/atoms/input'
+import Select from '../../../components/atoms/select'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
@@ -16,45 +17,57 @@ class AddProject extends Component {
 		super(props)
         this.onKeyChange = this.onKeyChange.bind(this)
         this.db = firebase.firestore()
+        this.initId = this.db.collection('tasks').doc().id
         this.state = {
             tasks: [
                 {
-                    id: this.db.collection('tasks').doc().id,
-                    title: ''
+                    id: null,
+                    category: null,
+                    title: null
                 }
-            ]
+            ],
+            project: {
+                id: '',
+                title: null,
+                tasks: [ this.initId ]
+            }
         }
 
     }
-    pushData = () => {
-        document.getElementById('add-task-title').focus()
-        var Data = {
-            managerName: "hideaki",
-            assignedName: "hideaki",
-            description: "hideaki",
-            dateExample: new Date(),
-            arrayTasks: [5, true, 'hello'],
-        };
-        this.db.collection('projects').doc().set(Data).catch(function(error) {
-                console.error("Error writing document: ", error);
-        });
-    }
     onKeyChange = (e) => {
-        if(e.keyCode === 13 && e.target.value !== null) {
+        let pushId = this.db.collection('tasks').doc().id
+        if(e.keyCode === 13 && e.target.value) {
+            console.log(this.state.tasks)
             this.setState(s => ({
-                tasks: [...s.tasks, {id: this.db.collection('tasks').doc().id, title: e.target.value} ]
+                tasks: [...s.tasks, {id: pushId, title: e.target.value} ],
+            }))
+        }
+
+
+        else if(e.keyCode === 8 && !e.target.value) {
+            // TODO: Filter result is false!!
+            this.setState(s => ({
+                tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
+                project: {
+                    tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+                }
             }))
         }
     }
+
     componentDidMount() {
+        document.getElementById('add-task-title').focus()
+        setTimeout(()=>{
+            document.getElementById('add-task-title').focus()
+        },100)
     }
 
     render() {
-        console.log(this.state.tasks)
-        let Tasks = this.state.tasks.map((task) => {
+        let Tasks = this.state.tasks.map((task,i) => {
+            console.log(task,i)
             return (
-                <Input type="editableList" key={task.id} placehodler={task.title} onkeydown={this.onKeyChange} />
-                )
+                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placeholder={task.title} onkeydown={this.onKeyChange} />
+            )
         })
         return (
             <section class={style.r}>
@@ -62,9 +75,15 @@ class AddProject extends Component {
                     <div class={style.in}>
                         <h1><span>Add</span>Project</h1>
                         <div class={style.title}>
-                            <input id="add-task-title" type="text" value="" placeholder="Project Name" />
+                            <input id="add-task-title" type="text" value=""  />
                         </div>
                         <div class={style.info}>
+                            <div class={style.types}>
+                                <p class={style.label}>Type</p>
+                                <div class={style.typesInr}>
+                                    <Select options={this.state.options} />
+                                </div>
+                            </div>
                             <div class={style.assigned}>
                                 <p class={style.label}>Managed by</p>
                                 <div>

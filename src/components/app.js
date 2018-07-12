@@ -33,7 +33,6 @@ class App extends Component {
         firebase.initializeApp(config)
         this.db = firebase.firestore()
         this.db.settings({timestampsInSnapshots: true})
-
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let uid = user.uid
