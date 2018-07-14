@@ -25,19 +25,6 @@ class ButtonAdd extends Component {
             }
         }
 	}
-    pushProjectData = () => {
-        console.log('clickme');
-        var Data = {
-            managerName: "hideaki",
-            assignedName: "hideaki",
-            description: "hideaki",
-            dateExample: new Date(),
-            arrayTasks: [5, true, 'hello'],
-        };
-        this.db.collection('projects').doc().set(Data).catch(function(error) {
-                console.error("Error writing document: ", error);
-        });
-    }
     click = (e) => {
         if(this.props.s.visibility.addList) {
             this.props.openAddList(this.props.s.visibility.addList)
@@ -53,7 +40,7 @@ class ButtonAdd extends Component {
                 style={this.props.s.visibility.addList ? {right: 115, transform: 'rotate(-45deg)'} : this.props.s.type.workSpace === 'Project' || this.props.s.type.workSpace === 'Doc' ? {right: 120, transform: '', width: 120, borderRadius: 30} : {right: 60, transform: ''} }
             >
                 {!this.props.s.type.workSpace ? <img class={style.add} src={ADD} width="30" height="30" alt="Add" />: null}
-                {this.props.s.type.workSpace ? <p class={style.addText} onclick={this.pushProjectData()}>Add</p> : null}
+                {this.props.s.type.workSpace ? <p class={style.addText} >Add</p> : null}
             </button>
 		)
 	}

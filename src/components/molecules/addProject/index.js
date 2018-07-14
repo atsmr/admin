@@ -34,6 +34,19 @@ class AddProject extends Component {
         }
 
     }
+    pushProjectData = () => {
+        console.log('clickme');
+        var Data = {
+            managerName: "hideaki",
+            assignedName: "hideaki",
+            description: "hideaki",
+            dateExample: new Date(),
+            arrayTasks: [5, true, 'hello'],
+        };
+        this.db.collection('projects').doc().set(Data).catch(function(error) {
+                console.error("Error writing document: ", error);
+        });
+    }
     onKeyChange = (e) => {
         let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
