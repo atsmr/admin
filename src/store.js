@@ -89,7 +89,10 @@ let ACTIONS = {
     PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
-            login: bool,
+            set: {
+                ...s.set,
+                project:bool
+            },
         },
         ...state
     }),
@@ -127,7 +130,7 @@ const INITIAL = {
         fetched: {
             users: false
         },
-        set: null
+        set: {project:false}
     },
     u: [], // Users
     i: {}, // Current user

@@ -12,7 +12,6 @@ import AddProject from '../../molecules/addProject/index.js'
 @connect(reducer, actions)
 class ButtonAdd extends Component {
 	constructor(props) {
-        console.log(props);
 		super(props)
         this.db = firebase.firestore()
         this.click = this.click.bind(this)
@@ -32,8 +31,7 @@ class ButtonAdd extends Component {
             this.props.openAddList(this.props.s.visibility.addList)
         }
     }
-    componentDidMount() {
-    }
+    pushProjectData(){}
 	render() {
 		return (
             <button onclick={this.click} class={style.r}

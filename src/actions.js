@@ -47,10 +47,11 @@ export function login(bool) {
         bool
     }
 }
-export function pushProjectData(arr) {
+export function pushProjectData(obj) {
+    console.log(obj);
     return {
         type: 'PUSH_PROJECT_DATA',
-        arr
+        bool
     }
 }
 // Firestore
