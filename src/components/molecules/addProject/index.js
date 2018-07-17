@@ -9,7 +9,6 @@ import Select from '../../../components/atoms/select'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
-import {reset} from 'redux-form';
 import config from'../../../conf/firebase'
 
 @connect(reducer, actions)
