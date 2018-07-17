@@ -90,7 +90,6 @@ let ACTIONS = {
         s: {
             ...s,
             set: {
-                ...s.set,
                 project:bool
             },
         },
@@ -130,7 +129,9 @@ const INITIAL = {
         fetched: {
             users: false
         },
-        set: {project:false}
+        set: {
+            project:false
+        }
     },
     u: [], // Users
     i: {}, // Current user

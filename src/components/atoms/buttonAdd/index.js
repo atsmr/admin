@@ -30,8 +30,10 @@ class ButtonAdd extends Component {
         } else if(!this.props.s.visibility.addList) {
             this.props.openAddList(this.props.s.visibility.addList)
         }
+        if (this.props.s.type.workSpace) {
+            this.props.pushProjectData(true)
+        }
     }
-    pushProjectData(){}
 	render() {
 		return (
             <button onclick={this.click} class={style.r}

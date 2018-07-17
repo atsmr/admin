@@ -47,8 +47,7 @@ export function login(bool) {
         bool
     }
 }
-export function pushProjectData(obj) {
-    console.log(obj);
+export function pushProjectData(bool) {
     return {
         type: 'PUSH_PROJECT_DATA',
         bool

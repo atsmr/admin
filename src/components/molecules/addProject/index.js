@@ -9,6 +9,7 @@ import Select from '../../../components/atoms/select'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
+import {reset} from 'redux-form';
 import config from'../../../conf/firebase'
 
 @connect(reducer, actions)
@@ -34,18 +35,10 @@ class AddProject extends Component {
         }
 
     }
-    pushProjectData = () => {
-        this.props.pushProjectData(this.state)
-        console.log('Success');
-      //  console.log(this.state);
-      //  var Data = this.state;
-      //  this.db.collection('tasks').doc().set(Data).catch(function(error) {
-      //      console.error("Error writing document: ", error);
-      //  });
-    }
     onKeyChange = (e) => {
         let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
+            console.log(e.target.value);
             this.setState(s => ({
                 tasks: [...s.tasks, {id: pushId, title: e.target.value} ],
             }))
@@ -71,11 +64,20 @@ class AddProject extends Component {
     }
 
     render() {
+        if (this.props.s.set.project) {
+            var Data = this.state;
+            this.db.collection('tasks').doc().set(Data).catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            this.props.pushProjectData(false)
+            this.props.openWorkSpace(true)
+            dispatch(reset('myForm'))
+        }
         console.log(this.state, 'state');
         console.log(this.props,'this props');
         let Tasks = this.state.tasks.map((task,i) => {
             return (
-                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placeholder={task.title} onkeydown={this.onKeyChange} />
+                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
             )
         })
         return (
@@ -120,7 +122,6 @@ class AddProject extends Component {
                     <div class={style.tasks}>
                         <header>
                             <h1>Tasks</h1>
-                            <p onClick={this.pushProjectData}>Clickme</p>
                         </header>
                         <div class={style.items}>
                             <ul id="items">
