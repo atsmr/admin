@@ -14,6 +14,7 @@ import 'firebase/firestore';
 class AddProject extends Component {
 	constructor(props) {
 		super(props)
+        this.update = this.update.bind(this)
         this.onKeyChange = this.onKeyChange.bind(this)
         this.db = firebase.firestore()
         this.initId = this.db.collection('tasks').doc().id
@@ -31,6 +32,9 @@ class AddProject extends Component {
                 tasks: [ this.initId ]
             }
         }
+    }
+    update = () => {
+        console.log('update')
     }
     onKeyChange = (e) => {
         let pushId = this.db.collection('tasks').doc().id
@@ -59,12 +63,14 @@ class AddProject extends Component {
     }
 
     render() {
-        console.log(this.state)
         let Tasks = this.state.tasks.map((task,i) => {
             return (
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placehodler={task.title} onkeydown={this.onKeyChange} />
                 )
         })
+        if(this.props.s.type.workSpace === 'Project') {
+            this.update()
+        }
         return (
             <section class={style.r}>
                 <div class={style.wrap}>

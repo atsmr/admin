@@ -15,17 +15,12 @@ class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.click = this.click.bind(this)
-        this.evalFirstUrls = this.evalFirstUrls.bind(this)
-        this.evalSecondUrls = this.evalSecondUrls.bind(this)
-        this.evalThirdUrls = this.evalThirdUrls.bind(this)
+        this.initNav = this.initNav.bind(this)
         this.constCurrent = this.constCurrent.bind(this)
         this.defaltFontSize = 18
         this.secondFontSize = 16
         this.state = {
-            back: {
-                top: 65,
-                left: -20
-            },
+            back: { top: 65, left: -20 },
             current: { left: 0, top: 0 },
             secondNav: [],
             thirdNav: [],
@@ -129,17 +124,32 @@ class Sidebar extends Component {
                     styles: {}
                 },
                 {
-                    children: [],
                     current: false,
                     href: '/management/',
                     title: 'Management',
-                    styles: {}
+                    styles: {},
+                    children: [
+                        {
+                            current: true,
+                            children: [],
+                            href: '/management/',
+                            styles: {},
+                            title: 'Summary',
+                        },
+                        {
+                            current: false,
+                            children: [],
+                            href: '/management/billing/',
+                            styles: {},
+                            title: 'Billing',
+                        }
+                    ]
                 }
             ]
         }
     }
 
-    evalFirstUrls = (pathname) => {
+    initNav = (pathname) => {
         this.state.works.map((list, i) => {
             if (list.title.toLowerCase() === pathname.replace(/\//g, '')) {
                 let s = this.state.works
@@ -162,13 +172,10 @@ class Sidebar extends Component {
                 )
                 setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)
             } else {
-                this.evalSecondUrls(pathname)
             }
         })
     }
 
-    evalSecondUrls = (pathname) => {
-    }
 
     evalThirdUrls = () => {
     }
@@ -192,11 +199,18 @@ class Sidebar extends Component {
 
     componentDidMount() {
         const pathname = window.location.pathname
-        this.evalFirstUrls(pathname)
+        this.initNav(pathname)
     }
 
     click = (e, nextList) => {
-        if (nextList.children != 0) {
+        /*
+         * なん階層目か
+         * 小要素をもつか
+         *
+         */
+
+        if (nextList.children.length !== 0 && nextList.href.match(/\//gm).length === 2 ) {
+            console.log('This is Second Directory')
             for (let i=0; i < this.state.works.length; i++) {
                 if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()){
                     this.state.works[i].styles = {
@@ -212,7 +226,6 @@ class Sidebar extends Component {
                     }
                 }
             }
-            this.state.works
             for(let i=0; i < nextList.children.length; i++) {
                 if (i === 0) {
                     nextList.children[i].styles = {
@@ -236,7 +249,11 @@ class Sidebar extends Component {
                     current: { top: 71 + 47}
                 }
             ))
+        }
+        if (nextList.children.length === 0 && nextList.href.match(/\//gm).length === 3 ) {
+            console.log('This is Second No Move Directory')
         } else {
+            console.log('This is First Directory')
             for(let i=0; i < this.state.works.length; i++) {
                 if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()) {
                     let w = this.state.works[i].current = true
@@ -259,7 +276,7 @@ class Sidebar extends Component {
     render() {
         const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
 
-        const SecondNav = this.state.secondNav.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={this.click} style={list.styles} href={list.href}>{list.title}</Link></li> })
+        const SecondNav = this.state.secondNav.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
 
         const ThirdNav = this.state.thirdNav.map((list) => {})
 

@@ -6,6 +6,7 @@ import Projects from 'async!../routes/projects';
 import Marketing from 'async!../routes/marketing';
 import MarketingAnalysis from 'async!../routes/marketing/analysis';
 import Management from 'async!../routes/management';
+import ManagementBilling from 'async!../routes/managementBilling';
 import Support from 'async!../routes/support';
 import Profile from 'async!../routes/profile';
 import Docs from 'async!../routes/docs';
@@ -79,6 +80,7 @@ class App extends Component {
                             <Marketing path="/marketing/" />
                             <MarketingAnalysis path="/marketing/analysis" />
                             <Management path="/management/" />
+                            <ManagementBilling path="/management/billing/" />
                             <Support path="/support/" />
                         </Router>
                     </Main>
