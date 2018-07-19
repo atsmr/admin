@@ -70,7 +70,6 @@ class AddProject extends Component {
             });
             this.props.pushProjectData(false)
             this.props.openWorkSpace(true)
-            dispatch(reset('myForm'))
         }
         console.log(this.state, 'state');
         console.log(this.props,'this props');

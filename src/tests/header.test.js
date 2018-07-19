@@ -5,7 +5,6 @@ import { Link } from 'preact-router/match';
 import { shallow } from 'preact-render-spy';
 
 describe('Initial Test of the Header', () => {
-teszt
 
 	test('Header renders 3 nav items', () => {
 		const context = shallow(<Header />);
