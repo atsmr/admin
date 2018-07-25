@@ -95,8 +95,7 @@ let ACTIONS = {
         },
         ...state
     }),
-    FETCH_USERS: ({ s, ...state }, { arr, obj }) => ({
-        ...state,
+    FETCH_USERS: ({ s,u, ...state }, { arr, obj }) => ({
         s: {
             ...s,
             fetched: {
@@ -104,8 +103,8 @@ let ACTIONS = {
                 users: true
             }
         },
-        i: obj,
-        u: arr
+        u: arr,
+        ...state
     })
 }
 

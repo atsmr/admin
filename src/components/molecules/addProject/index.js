@@ -27,6 +27,8 @@ class AddProject extends Component {
                     title: null
                 }
             ],
+            users: [
+            ],
             project: {
                 title: null,
                 description: null,
@@ -56,12 +58,28 @@ class AddProject extends Component {
         }
     }
 
+    componentWillMount(){
+   /*  
+      var citiesRef = this.db.collection('users');
+      var allCities = citiesRef.get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            let users = doc.data();
+            console.log(users);
+            this.setState(s => ({users:[...s.users, users]}))
+          });
+        })
+        .catch(err => {
+          console.log('Error getting documents', err);
+        });
+        */
+    }
+
     componentDidMount() {
         document.getElementById('add-task-title').focus()
         setTimeout(()=>{
             document.getElementById('add-task-title').focus()
         },100)
-        console.log(document.forms);
     }
 
     render() {
@@ -71,16 +89,20 @@ class AddProject extends Component {
           let DataTasks = {};
           let Timestamp = new Date();
           let DataProjects = this.state.project;
-          DataTasks.tasks = this.state.tasks;
+
+          DataTasks.tasks = this.state.tasks.slice(1);
           DataTasks.createTime = Timestamp
-          DataTasks.id = pushId
-          console.log(DataTasks);
+          DataTasks.projectId = pushId
+
+          DataProjects.createTime = Timestamp
+
           this.db.collection('projects').doc(pushId).set(DataProjects).catch(function(error) {
             console.error("Error writing document: ", error);
           });
           this.db.collection('tasks').doc().set(DataTasks).catch(function(error) {
             console.error("Error writing document: ", error);
           });
+
           this.props.pushProjectData(false)
           this.props.openWorkSpace(true)
         }
@@ -91,6 +113,11 @@ class AddProject extends Component {
         let Tasks = this.state.tasks.map((task,i) => {
             return (
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
+            )
+        })
+        let userNameList = this.props.u.map((user) => {
+            return (
+              <p class={style.name} > {user.handleName}</p>
             )
         })
         return (
@@ -128,7 +155,10 @@ class AddProject extends Component {
                                 <p class={style.label}>Assignee</p>
                                 <div>
                                     <ul>
-                                        <li> <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> </li>
+                                      <li> 
+                                      <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
+                                      {userNameList}
+                                      </li>
                                     </ul>
                                 </div>
                             </div>

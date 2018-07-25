@@ -36,7 +36,7 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let uid = user.uid
-                that.props.login(true)
+                that.props.login(true)// login bypas
                 that.setState({checkLogin: true})
 
                 that.db.collection("people").where('user', '==', true).onSnapshot(function(docs) {
@@ -45,12 +45,15 @@ class App extends Component {
                     let setLang
                     docs.forEach(function(doc) {
                             doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? setLang = doc.data().setLanguage : null
+                      let hide = doc.data()
+                      users.push(hide)
+                      that.props.fetchUsers(users, currentUser)
                     })
-                    docs.forEach(function(doc) {
-                        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? currentUser = doc.data() : null
-                        doc.data().language === setLang ? users.push(doc.data()) : null
-                    })
-                    that.props.fetchUsers(users, currentUser)
+                //    docs.forEach(function(doc) {
+                //        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? currentUser = doc.data() : null
+                //        doc.data().language === setLang ? users.push(doc.data()) : null
+                //    })
+                //    that.props.fetchUsers(users, currentUser)
                 })
             } else {
                 that.setState({checkLogin: true})
