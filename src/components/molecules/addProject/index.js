@@ -13,6 +13,7 @@ import config from'../../../conf/firebase'
 
 @connect(reducer, actions)
 class AddProject extends Component {
+
 	constructor(props) {
 		super(props)
         this.onKeyChange = this.onKeyChange.bind(this)
@@ -21,25 +22,25 @@ class AddProject extends Component {
         this.state = {
             tasks: [
                 {
-                    id: null,
+                  //  id: null,
                     category: null,
                     title: null
                 }
             ],
-          //  project: {
-          //      id: '',
-          //      title: null,
-          //      tasks: [ this.initId ]
-          //  }
+            project: {
+                title: null,
+                description: null,
+            }
         }
 
     }
+
     onKeyChange = (e) => {
-        let pushId = this.db.collection('tasks').doc().id
+      //  let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
             console.log(e.target.value);
             this.setState(s => ({
-                tasks: [...s.tasks, {id: pushId, title: e.target.value} ],
+                tasks: [...s.tasks, {title: e.target.value} ],
             }))
         }
 
@@ -48,9 +49,9 @@ class AddProject extends Component {
             // TODO: Filter result is false!!
             this.setState(s => ({
                 tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
-                project: {
-                    tasks: s.tasks.filter(task => task !== e.target.dataset.key)
-                }
+             //   project: {
+             //       tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+             //   }
             }))
         }
     }
@@ -60,19 +61,33 @@ class AddProject extends Component {
         setTimeout(()=>{
             document.getElementById('add-task-title').focus()
         },100)
+        console.log(document.forms);
     }
 
     render() {
+
         if (this.props.s.set.project) {
-            var Data = this.state;
-            this.db.collection('tasks').doc().set(Data).catch(function(error) {
-                console.error("Error writing document: ", error);
-            });
-            this.props.pushProjectData(false)
-            this.props.openWorkSpace(true)
+          let pushId = this.db.collection('tasks').doc().id
+          let DataTasks = {};
+          let Timestamp = new Date();
+          let DataProjects = this.state.project;
+          DataTasks.tasks = this.state.tasks;
+          DataTasks.createTime = Timestamp
+          DataTasks.id = pushId
+          console.log(DataTasks);
+          this.db.collection('projects').doc(pushId).set(DataProjects).catch(function(error) {
+            console.error("Error writing document: ", error);
+          });
+          this.db.collection('tasks').doc().set(DataTasks).catch(function(error) {
+            console.error("Error writing document: ", error);
+          });
+          this.props.pushProjectData(false)
+          this.props.openWorkSpace(true)
         }
+
         console.log(this.state, 'state');
         console.log(this.props,'this props');
+
         let Tasks = this.state.tasks.map((task,i) => {
             return (
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
@@ -84,7 +99,12 @@ class AddProject extends Component {
                     <div class={style.in}>
                         <h1><span>Add</span>Project</h1>
                         <div class={style.title}>
-                            <input id="add-task-title" type="text" value=""  />
+                          <input 
+                          id="add-task-title" 
+                          type="text" 
+                          value={this.state.project.title}  
+                          onChange={(e) => this.setState({project:{...this.state.project,title: e.target.value}})}
+                          />
                         </div>
                         <div class={style.info}>
                             <div class={style.types}>
@@ -114,7 +134,11 @@ class AddProject extends Component {
                             </div>
                         </div>
                         <div class={style.description}>
-                            <textarea placeholder="Description"></textarea>
+                          <textarea 
+                          placeholder="Description"  
+                          value={this.state.project.description}  
+                          onChange={(e) => this.setState({project:{...this.state.project,description: e.target.value}})}>
+                          </textarea>
                         </div>
                     </div>
                     <div class={style.tasks}>
