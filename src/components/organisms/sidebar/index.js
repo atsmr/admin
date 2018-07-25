@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
 import { Link } from 'preact-router/match';
 import { connect } from 'preact-redux'
 import style from './style';
@@ -15,8 +16,13 @@ class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.click = this.click.bind(this)
+        this.secondClick = this.secondClick.bind(this)
+        this.current = this.current.bind(this)
+        this.default = this.default.bind(this)
+        this.gotoSecond = this.gotoSecond.bind(this)
+        this.backFirst = this.backFirst.bind(this)
         this.initNav = this.initNav.bind(this)
-        this.constCurrent = this.constCurrent.bind(this)
+        this.initSecondNav = this.initSecondNav.bind(this)
         this.defaltFontSize = 18
         this.secondFontSize = 16
         this.state = {
@@ -158,7 +164,7 @@ class Sidebar extends Component {
                     ...states,
                     current: { left : -100, top: 71 + 46.5 * i },
                     works: s
-                    })
+                })
                 )
                 setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
             } else if(pathname === '/') {
@@ -176,12 +182,6 @@ class Sidebar extends Component {
         })
     }
 
-
-    evalThirdUrls = () => {
-    }
-
-    constCurrent = () => {
-    }
 
     componentWillMount() {
         let styles
@@ -202,81 +202,161 @@ class Sidebar extends Component {
         this.initNav(pathname)
     }
 
-    click = (e, nextList) => {
-        /*
-         * なん階層目か
-         * 小要素をもつか
-         *
-         */
-
-        if (nextList.children.length !== 0 && nextList.href.match(/\//gm).length === 2 ) {
-            console.log('This is Second Directory')
-            for (let i=0; i < this.state.works.length; i++) {
-                if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()){
-                    this.state.works[i].styles = {
-                        fontSize: 28,
-                        color: '#333',
-                        lineHeight: 1.6,
-                        left: 60,
-                        top: 55
-                    }
-                } else{
-                    this.state.works[i].styles = {
-                        display: 'none'
-                    }
-                }
+    initSecondNav = (states) => {
+        let children =  states.children
+        for(let i=0; i < children.length; i++) {
+            children[i].styles = {
+                left: 60,
+                fontSize: 16,
+                top: 108 + 16 * i + 30 * i
             }
-            for(let i=0; i < nextList.children.length; i++) {
-                if (i === 0) {
-                    nextList.children[i].styles = {
-                        left: 60,
-                        fontSize: 16,
-                        top: 108
-                    }
-                } else {
-                    nextList.children[i].styles = {
-                        left: 60,
-                        fontSize: 16,
-                        top: 108 + 16 * i + 30 * i
-                    }
-                }
-            }
-            this.setState(states => (
-                {
-                    ...states,
-                    secondNav: nextList.children,
-                    back: { top: 65, left: 28},
-                    current: { top: 71 + 47}
-                }
-            ))
         }
-        if (nextList.children.length === 0 && nextList.href.match(/\//gm).length === 3 ) {
-            console.log('This is Second No Move Directory')
-        } else {
-            console.log('This is First Directory')
-            for(let i=0; i < this.state.works.length; i++) {
-                if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()) {
-                    let w = this.state.works[i].current = true
-                    this.setState(w)
-                    this.setState(states => (
-                        {
-                            ...states,
-                            secondNav: this.state.works[i].children,
-                            current: { top: 72 + 46 * i}
-                        }
-                    ))
-                } else {
-                    let w = this.state.works[i].current = false
-                    this.setState(w)
+        return children
+    }
+
+    gotoSecond = (states, index) => {
+        states.map((s,i) => {
+            if(i === index) {
+                s.styles = {
+                    fontSize: 28,
+                    color: '#333',
+                    lineHeight: 1.6,
+                    letterSpacing: '1px',
+                    left: 60,
+                    top: 55
                 }
+            } else {
+                s.styles = {
+                    display: 'none'
+                }
+            }
+        })
+        return states
+    }
+
+    backFirst = (states, index) => {
+        states.map((s,i) => {
+            if(i === 0) {
+                s.current = true,
+                    s.styles = {
+                        fontSize: 16,
+                        lineHeight: 1.6,
+                        letterSpacing: '1px',
+                        left: 60,
+                        top: 71 + 47 * i
+                    }
+            } else {
+                s.current = false,
+                    s.styles = {
+                        fontSize: 16,
+                        lineHeight: 1.6,
+                        letterSpacing: '1px',
+                        left: 60,
+                        top: 71 + 47 * i
+                    }
+            }
+        })
+        return states
+    }
+
+    default = (states, index) => {
+        states.map((s,i) => {
+            s.styles = { display: 'none' }
+        })
+        return states
+    }
+
+    current = (states,index) => {
+        states.map((s,i) => {
+            if(i === index) {
+                s.current = true
+            } else {
+                s.current = false
+            }
+        })
+        return states
+    }
+
+    click = (e, nextList, dir) => {
+        const works = this.state.works
+        let items, index
+
+        for(let i=0; i < works.length; i++) {
+            if(works[i].title === nextList.title) {
+                index = i
+            } else {
+                if(works[i].children.length !== 0) {
+                    works[i].children.map((s,i) => {
+                    })
+                }
+            }
+        }
+
+        if(dir === 0) {
+            if(nextList.styles.fontSize === 28) {
+                this.setState(s => ({
+                    ...s,
+                    current: { left : 0, top: 71 },
+                    back: { top: 65, left: -20 },
+                    secondNav: this.default([...s.secondNav], index),
+                    works: this.backFirst([...s.works], index)
+                }))
+                return
+            }
+
+            switch(nextList.href.match(/\//gm).length) {
+                case 1: // First Dir & First Object
+                    this.setState(s => ({
+                        ...s,
+                        current: { top: 71 },
+                        works: this.current([...s.works],index)
+                    }))
+                    break
+                case 2: // First Directory
+                    if(nextList.children.length !== 0) { // Has child
+                        this.setState(s => ({
+                            ...s,
+                            secondNav: this.initSecondNav(nextList),
+                            back: { top: 65, left: 28},
+                            current: { top: 71 + 47 },
+                            works: this.gotoSecond([...s.works], index)
+                        }))
+                    } else { // Hasn't child
+                        this.setState(s => ({
+                            ...s,
+                            current: { top: 71 + 47 * index },
+                            works: this.current([...s.works], index)
+                        }))
+                    }
+                    break
+                case 3:
+                    if(nextList.children.length !== 0) { // Has child
+                    } else { // Hasn't child
+                        this.setState(s => ({
+                            ...s,
+                            secondNav: this.current([...s.secondNav]),
+                            current: { top: 71 + 47 * index },
+                        }))
+                    }
+                    break
+                default:
+                    break
             }
         }
     }
 
-    render() {
-        const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
+    secondClick = (currentList, index, depth) => {
+        this.setState(s => ({
+            ...s,
+            secondNav: this.current([...s.secondNav], index),
+            current: { top: 118 + 46 * index },
+        }))
+    }
 
-        const SecondNav = this.state.secondNav.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
+    render() {
+        const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list, 0)} style={list.styles} href={list.back ? '/' : list.href}>{list.title}</Link></li> })
+
+        const SecondNav = this.state.secondNav.map((list, i) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.secondClick(this.state.secondNav, i, 1)} style={list.styles} href={list.href}>{list.title}</Link></li> })
 
         const ThirdNav = this.state.thirdNav.map((list) => {})
 
@@ -296,8 +376,8 @@ class Sidebar extends Component {
                 <Avatar />
                 <Punch />
             </aside>
-        )
-    }
+            )
+}
 }
 
 export default Sidebar;

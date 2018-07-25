@@ -2,14 +2,14 @@ import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
 import { connect } from 'preact-redux'
 import style from './style.css';
-import * as actions from '../../actions'
-import reducer from '../../reducer'
+import * as actions from '../../../actions'
+import reducer from '../../../reducer'
 import firebase from "firebase/app";
 import "firebase/auth";
-import ContentsHeader from '../../components/molecules/contentsHeader'
+import ContentsHeader from '../../../components/molecules/contentsHeader'
 
 @connect(reducer, actions)
-class Marketing extends Component {
+class MarketingPricing extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -48,7 +48,7 @@ class Marketing extends Component {
     render() {
         return (
             <div class={style.r}>
-                <ContentsHeader title="Billing" navs={this.state.navs} />
+                <ContentsHeader title="Pricing" navs={this.state.navs} />
                 <div class={style.items}>
                     <p>this is home page</p>
                 </div>
@@ -57,4 +57,4 @@ class Marketing extends Component {
     }
 }
 
-export default Marketing
+export default MarketingPricing

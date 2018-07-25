@@ -3,7 +3,10 @@
     clear: both
 
 }
-.items li{
+.items a {
+    color: #fff;
+}
+.items li {
     padding: 30px 40px;
     width: calc(25% - 81px);
     min-height: 160px;
@@ -13,12 +16,21 @@
     -moz-transition: all .5s ease;
     -webkit-transition: all .5s ease;
 }
+
+.items li a {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none
+}
+
 .items li h2 {
     letter-spacing: 1px;
     margin-top: 10px;
     font-size: 18px;
     line-height: 1.3
 }
+
 .cat {
     color: #999;
     letter-spacing: 1px;
