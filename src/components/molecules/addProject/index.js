@@ -117,7 +117,10 @@ class AddProject extends Component {
         })
         let userNameList = this.props.u.map((user) => {
             return (
+              <li> 
+              <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
               <p class={style.name} > {user.handleName}</p>
+              </li>
             )
         })
         return (
@@ -155,10 +158,7 @@ class AddProject extends Component {
                                 <p class={style.label}>Assignee</p>
                                 <div>
                                     <ul>
-                                      <li> 
-                                      <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
-                                      {userNameList}
-                                      </li>
+                                        {userNameList}
                                     </ul>
                                 </div>
                             </div>
