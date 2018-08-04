@@ -51,9 +51,9 @@ class AddProject extends Component {
             // TODO: Filter result is false!!
             this.setState(s => ({
                 tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
-             //   project: {
-             //       tasks: s.tasks.filter(task => task !== e.target.dataset.key)
-             //   }
+                project: {
+                    tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+                }
             }))
         }
     }
@@ -131,6 +131,7 @@ class AddProject extends Component {
                         <div class={style.title}>
                           <input 
                           id="add-task-title" 
+                          placeholder="Title Name"  
                           type="text" 
                           value={this.state.project.title}  
                           onChange={(e) => this.setState({project:{...this.state.project,title: e.target.value}})}
