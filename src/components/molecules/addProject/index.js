@@ -10,6 +10,7 @@ import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
 import config from'../../../conf/firebase'
+import ADD from '../../../assets/add.svg';
 
 @connect(reducer, actions)
 class AddProject extends Component {
@@ -20,6 +21,7 @@ class AddProject extends Component {
         this.db = firebase.firestore()
         this.initId = this.db.collection('tasks').doc().id
         this.state = {
+            member: false,
             tasks: [
                 {
                   //  id: null,
@@ -123,7 +125,13 @@ class AddProject extends Component {
               </li>
             )
         })
-        return (
+        let assignedMember;
+        if (this.state.member) {
+          assignedMember =  <div class={style.list}> <ul > {userNameList} </ul> </div> 
+        }
+        let btn_class = this.state.member ? style.plusx : style.plus ;
+
+      return (
             <section class={style.r}>
                 <div class={style.wrap}>
                     <div class={style.in}>
@@ -157,11 +165,10 @@ class AddProject extends Component {
                             </div>
                             <div class={style.assigned}>
                                 <p class={style.label}>Assignee</p>
-                                <div>
-                                    <ul>
-                                        {userNameList}
-                                    </ul>
-                                </div>
+                                    <div onclick={() => this.setState({member: !this.state.member})} >
+                                    <img src={ADD} class={btn_class} />
+                                    </div >
+                                    {assignedMember}
                             </div>
                         </div>
                         <div class={style.description}>

@@ -150,3 +150,20 @@
 .typesInr {
     padding: 10px 0 0 0
 }
+.list {
+  overflow: scroll;
+  height: 180px;
+  width: 200px;
+  position: absolute;
+  top: 345px;
+  left: 134px;
+}
+.assigned .plus {
+  height: 20px;
+  width: 20px;
+}
+.assigned .plusx {
+  height: 20px;
+  width: 20px;
+  transform: rotate(-45deg);
+}

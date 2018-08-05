@@ -20,7 +20,7 @@ class ButtonAdd extends Component {
             style: {
                 opacity: 1,
                 right: 60,
-                transform: ''
+                tr: ''
             }
         }
 	}
