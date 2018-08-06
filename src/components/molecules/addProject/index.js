@@ -22,6 +22,7 @@ class AddProject extends Component {
         this.initId = this.db.collection('tasks').doc().id
         this.state = {
             member: false,
+            name: "",
             tasks: [
                 {
                   //  id: null,
@@ -119,7 +120,7 @@ class AddProject extends Component {
         })
         let userNameList = this.props.u.map((user) => {
             return (
-              <li> 
+              <li onclick={() => {this.setState({member: !this.state.member,name: user.handleName})}}> 
               <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
               <p class={style.name} > {user.handleName}</p>
               </li>
