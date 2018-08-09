@@ -22,7 +22,8 @@ class AddProject extends Component {
         this.initId = this.db.collection('tasks').doc().id
         this.state = {
             member: false,
-            assignedEmail: [],
+            assignedMember: [
+            ],
             tasks: [
                 {
                   //  id: null,
@@ -92,12 +93,14 @@ class AddProject extends Component {
           let DataTasks = {};
           let Timestamp = new Date();
           let DataProjects = this.state.project;
+          let AssignedMember = this.state.assignedMember;
 
           DataTasks.tasks = this.state.tasks.slice(1);
           DataTasks.createTime = Timestamp
           DataTasks.projectId = pushId
 
           DataProjects.createTime = Timestamp
+          DataProjects.assignedMember = AssignedMember
 
           this.db.collection('projects').doc(pushId).set(DataProjects).catch(function(error) {
             console.error("Error writing document: ", error);
@@ -118,16 +121,19 @@ class AddProject extends Component {
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
             )
         })
-        let assignedMemberView = this.state.assignedEmail.map((email) => {
+        let assignedMemberView = this.state.assignedMember.map((z) => {
           return ( 
-          <li>{email}</li>
+          <li>
+              <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
+              <p class={style.name} > {z.name}</p>
+          </li>
           )
         })
         let userNameList = this.props.u.map((user) => {
             return (
               <li onclick={() => {this.setState({
-                // member: !this.state.member,
-                assignedEmail: this.state.assignedEmail.concat([user.email]) 
+                member: !this.state.member,
+                assignedMember: this.state.assignedMember.concat([{email: user.email, name: user.handleName}]) 
               })}}> 
               <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
               <p class={style.name} > {user.handleName}</p>

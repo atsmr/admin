@@ -159,6 +159,8 @@
   top: 25px;
   left: 80px;
   background-color: #fafafa;
+  border: 1px solid #000;
+  border-radius: 5px;
 }
 .assigned .plus {
   height: 20px;
