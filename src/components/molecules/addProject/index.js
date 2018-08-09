@@ -22,7 +22,7 @@ class AddProject extends Component {
         this.initId = this.db.collection('tasks').doc().id
         this.state = {
             member: false,
-            name: "",
+            assignedEmail: [],
             tasks: [
                 {
                   //  id: null,
@@ -118,9 +118,17 @@ class AddProject extends Component {
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
             )
         })
+        let assignedMemberView = this.state.assignedEmail.map((email) => {
+          return ( 
+          <li>{email}</li>
+          )
+        })
         let userNameList = this.props.u.map((user) => {
             return (
-              <li onclick={() => {this.setState({member: !this.state.member,name: user.handleName})}}> 
+              <li onclick={() => {this.setState({
+                // member: !this.state.member,
+                assignedEmail: this.state.assignedEmail.concat([user.email]) 
+              })}}> 
               <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
               <p class={style.name} > {user.handleName}</p>
               </li>
@@ -169,6 +177,9 @@ class AddProject extends Component {
                                     <div onclick={() => this.setState({member: !this.state.member})} >
                                     <img src={ADD} class={btn_class} />
                                     </div >
+                                        <ul>
+                                    {assignedMemberView}
+                                        </ul>
                                     {assignedMember}
                             </div>
                         </div>

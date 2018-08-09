@@ -99,6 +99,7 @@
     color: #999;
     font-size: 11px;
     display: flex;
+    position: relative;
 }
 .assigned p {
     color: #ccc;
@@ -155,8 +156,9 @@
   height: 180px;
   width: 200px;
   position: absolute;
-  top: 345px;
-  left: 134px;
+  top: 25px;
+  left: 80px;
+  background-color: #fafafa;
 }
 .assigned .plus {
   height: 20px;
