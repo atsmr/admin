@@ -6,6 +6,7 @@ import style from './style';
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
 //import * as firebase from 'firebase'
+import Task from '../../../components/organisms/task/'
 
 @connect(reducer, actions)
 class Project extends Component {
@@ -15,8 +16,14 @@ class Project extends Component {
 
     render() {
         return (
-            <section>{this.props.projectId}</section>
-        )
+            <div class={style.r}>
+                <section class={style.content}>{this.props.projectId}</section>
+                <section class={style.widget}>
+                    <Task id={this.props.taskId} />
+                    {this.props.id}
+                </section>
+            </div>
+            )
     }
 }
 

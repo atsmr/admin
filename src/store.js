@@ -120,6 +120,31 @@ const INITIAL = {
         fetched: {
             users: false
         },
+        data: {
+            projects: [
+                {
+                    id: 'fdsafd12j3jfds3',
+                    title: 'Amore Miyakojima',
+                    done: false,
+                    codeName: 'Amore',
+                    type: '6kObdS3foO2uAODNwAE9',
+                    content: '',
+                    author: '1CsJRlXltfc7NgLk6sHGQsy522F3',
+                    team: ['1CsJRlXltfc7NgLk6sHGQsy522F3'],
+                    dueDate: '',
+                    recommend: '',
+                    budgetMoney: 0,
+                    budgetTime: '',
+                    tasks: [],
+                    comments: [''],
+                    modifiedAt: '',
+                    createdAt: ''
+                }
+            ]
+        },
+        current: {
+            task: 'fdsafd12j3jfds3'
+        },
         set: null
     },
     u: [], // Users

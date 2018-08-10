@@ -22,6 +22,7 @@ class Sidebar extends Component {
         this.gotoSecond = this.gotoSecond.bind(this)
         this.backFirst = this.backFirst.bind(this)
         this.initNav = this.initNav.bind(this)
+        this.dispatchWorks = this.dispatchWorks.bind(this)
         this.initSecondNav = this.initSecondNav.bind(this)
         this.defaltFontSize = 18
         this.secondFontSize = 16
@@ -155,33 +156,76 @@ class Sidebar extends Component {
         }
     }
 
-    initNav = (pathname) => {
-        this.state.works.map((list, i) => {
-            if (list.title.toLowerCase() === pathname.replace(/\//g, '')) {
-                let s = this.state.works
-                s[i].current = true
-                this.setState(states => ({
-                    ...states,
-                    current: { left : -100, top: 71 + 46.5 * i },
-                    works: s
-                })
-                )
-                setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
-            } else if(pathname === '/') {
-                let s = this.state.works
-                s[0].current = true
-                this.setState(states => ({
-                    ...states,
-                    current: { left : -100, top: 71},
-                    works: s
-                })
-                )
-                setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)
+    dispatchWorks = (arr, i) => {
+        for(let j = 0; j < arr.length; j++) {
+            if(i === j) {
+                arr[j].styles = {
+                    fontSize: 28,
+                    color: '#333',
+                    lineHeight: 1.6,
+                    letterSpacing: '1px',
+                    left: 60,
+                    top: 55
+                }
             } else {
+                arr[j].styles = {
+                    display: 'none'
+                }
+            }
+        }
+        return arr
+    }
+
+    initNav = pathname => {
+        let dir, index = 0
+
+        this.state.works.map((e,i) => {
+            if(pathname.match(e.href) !== null && e.href !== '/' && e.children.length !== 0) {
+                dir = 1
+                e.children.map((elm, j) => {
+                    if(elm.href === pathname) {
+                        index = j
+                    }
+                })
+
+                this.setState(s => ({
+                    ...s,
+                    back: { top: 65, left: 28},
+                    current: { top: 71 + 47 * (index + 1)},
+                    secondNav: this.initSecondNav(e, index),
+                    works: this.dispatchWorks([...s.works], i)
+                }))
+            } else if(e.href === pathname) {
+                e.current = true
+                this.setState(s => ({
+                    current: { left : -100, top: 71 + 46.5 * i },
+                }))
+                setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
             }
         })
     }
 
+    initSecondNav = (elements, index) => {
+        let children =  elements.children
+        for(let i=0; i < children.length; i++) {
+            if(i === index) {
+                children[i].current = true
+                children[i].styles = {
+                    left: 60,
+                    fontSize: 16,
+                    top: 108 + 16 * i + 30 * i
+                }
+            } else {
+                children[i].current = false
+                children[i].styles = {
+                    left: 60,
+                    fontSize: 16,
+                    top: 108 + 16 * i + 30 * i
+                }
+            }
+        }
+        return children
+    }
 
     componentWillMount() {
         let styles
@@ -202,17 +246,6 @@ class Sidebar extends Component {
         this.initNav(pathname)
     }
 
-    initSecondNav = (states) => {
-        let children =  states.children
-        for(let i=0; i < children.length; i++) {
-            children[i].styles = {
-                left: 60,
-                fontSize: 16,
-                top: 108 + 16 * i + 30 * i
-            }
-        }
-        return children
-    }
 
     gotoSecond = (states, index) => {
         states.map((s,i) => {
@@ -309,11 +342,11 @@ class Sidebar extends Component {
                     this.setState(s => ({
                         ...s,
                         current: { top: 71 },
-                        works: this.current([...s.works],index)
+                        works: this.current([...s.works], index)
                     }))
                     break
                 case 2: // First Directory
-                    if(nextList.children.length !== 0) { // Has child
+                    if(nextList.children.length !== 0) {
                         this.setState(s => ({
                             ...s,
                             secondNav: this.initSecondNav(nextList),
@@ -321,21 +354,11 @@ class Sidebar extends Component {
                             current: { top: 71 + 47 },
                             works: this.gotoSecond([...s.works], index)
                         }))
-                    } else { // Hasn't child
+                    } else {
                         this.setState(s => ({
                             ...s,
                             current: { top: 71 + 47 * index },
                             works: this.current([...s.works], index)
-                        }))
-                    }
-                    break
-                case 3:
-                    if(nextList.children.length !== 0) { // Has child
-                    } else { // Hasn't child
-                        this.setState(s => ({
-                            ...s,
-                            secondNav: this.current([...s.secondNav]),
-                            current: { top: 71 + 47 * index },
                         }))
                     }
                     break

@@ -36,78 +36,7 @@ class Projects extends Component {
         }
     }
     componentWillMount() {
-        let data = [
-            {
-                id: '1',
-                title: 'Amore MIYAKOJIMA',
-                type: 'Web Creation',
-            },
-            {
-                id: '2',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '3',
-                title: 'Amore MIYAKOJIMA',
-                type: 'Web Creation',
-            },
-            {
-                id: '4',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '5',
-                title: 'Amore MIYAKOJIMA',
-                type: 'Web Creation',
-            },
-            {
-                id: '6',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '7',
-                title: 'Amore MIYAKOJIMA',
-                type: 'Web Creation',
-            },
-            {
-                id: '8',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '9',
-                title: 'Amore MIYAKOJIMA',
-                type: 'Web Creation',
-            },
-            {
-                id: '10',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '11',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '12',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '13',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            },
-            {
-                id: '14',
-                title: 'Macbee Planet Robee Crawler',
-                type: 'Web Creation',
-            }
-        ]
+        let data = this.props.s.data.projects
         this.setState((state) => {
             state.items = data
         })
@@ -153,7 +82,7 @@ class Projects extends Component {
             <div class={style.r}>
                 <ContentsHeader title={this.getTitle(id)} navs={this.state.navs}/>
                 <div class={style.items}>
-                    <Project projectId={id} />
+                    <Project id={id} />
                 </div>
             </div>
             )

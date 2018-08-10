@@ -62,7 +62,7 @@
     -webkit-transition: all .3s ease;
 }
 .secondNav {
-    animation:  bottomUp 1.2s both;
+    animation:  bottomUp .5s both;
     opacity: 0;
 }
 

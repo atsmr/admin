@@ -48,7 +48,7 @@ class Marketing extends Component {
     render() {
         return (
             <div class={style.r}>
-                <ContentsHeader title="Billing" navs={this.state.navs} />
+                <ContentsHeader title="Marketing" navs={this.state.navs} />
                 <div class={style.items}>
                     <p>this is home page</p>
                 </div>
