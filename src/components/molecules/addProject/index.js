@@ -25,11 +25,10 @@ class AddProject extends Component {
             assignedMember: [
             ],
             tasks: [
-                {
-                  //  id: null,
-                    category: null,
-                    title: null
-                }
+              {
+                title: '',
+                dataIndex:0 
+              }
             ],
             users: [
             ],
@@ -44,12 +43,10 @@ class AddProject extends Component {
     onKeyChange = (e) => {
       //  let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
-            console.log(e.target.value);
             this.setState(s => ({
-                tasks: [...s.tasks, {title: e.target.value} ],
+              tasks: [...s.tasks, {title: e.target.value, dataIndex:this.state.tasks[this.state.tasks.length - 1].dataIndex+1} ],
             }))
         }
-
 
         else if(e.keyCode === 8 && !e.target.value) {
             // TODO: Filter result is false!!
@@ -203,7 +200,7 @@ class AddProject extends Component {
                         </header>
                         <div class={style.items}>
                             <ul id="items">
-                                {Tasks}
+                              {Tasks}
                             </ul>
                         </div>
                     </div>
