@@ -39,8 +39,10 @@ class Home extends Component {
             <div class={style.r}>
                 <ContentsHeader title="Dashboard" navs={this.state.navs} />
                 <div class={style.items}>
-                    <Chart key="1ssjfaafsak3fdsafdsaf" type="circle" ratio="90" />
-                    <Chart key="20fdsa8dfsafdsajfds" type="circle" ratio="50" />
+                    <Chart pfx="1" type="circle" ratio="90" />
+                    <Chart pfx="2" type="circle" ratio="50" />
+                    <Chart pfx="3" type="circle" ratio="100" />
+                    <Chart pfx="4" type="line" />
                     <p>this is home page</p>
                     <p>this is home page</p>
                     <p>this is home page</p>
