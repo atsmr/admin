@@ -1,4 +1,4 @@
-module.exports = {
+export default{
     apiKey: "AIzaSyCsR2KfG6jF2PehtVkIpa6TV727YfvFSms",
     authDomain: "familyland-acfd0.firebaseapp.com",
     databaseURL: "https://familyland-acfd0.firebaseio.com",

@@ -86,8 +86,16 @@ let ACTIONS = {
         },
         ...state
     }),
-    FETCH_USERS: ({ s, ...state }, { arr, obj }) => ({
-        ...state,
+    PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            set: {
+                project:bool
+            },
+        },
+        ...state
+    }),
+    FETCH_USERS: ({ s,u, ...state }, { arr, obj }) => ({
         s: {
             ...s,
             fetched: {
@@ -95,8 +103,8 @@ let ACTIONS = {
                 users: true
             }
         },
-        i: obj,
-        u: arr
+        u: arr,
+        ...state
     })
 }
 
@@ -145,7 +153,9 @@ const INITIAL = {
         current: {
             task: 'fdsafd12j3jfds3'
         },
-        set: null
+        set: {
+            project:false
+        }
     },
     u: [], // Users
     i: {}, // Current user

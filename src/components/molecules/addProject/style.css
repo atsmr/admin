@@ -99,6 +99,7 @@
     color: #999;
     font-size: 11px;
     display: flex;
+    position: relative;
 }
 .assigned p {
     color: #ccc;
@@ -149,4 +150,24 @@
 }
 .typesInr {
     padding: 10px 0 0 0
+}
+.list {
+  overflow: scroll;
+  height: 180px;
+  width: 200px;
+  position: absolute;
+  top: 25px;
+  left: 80px;
+  background-color: #fafafa;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+.assigned .plus {
+  height: 20px;
+  width: 20px;
+}
+.assigned .plusx {
+  height: 20px;
+  width: 20px;
+  transform: rotate(-45deg);
 }
