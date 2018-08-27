@@ -6,6 +6,7 @@ import Projects from 'async!../routes/projects';
 import Marketing from 'async!../routes/marketing';
 import MarketingAnalysis from 'async!../routes/marketing/analysis';
 import Management from 'async!../routes/management';
+import ManagementShifts from 'async!../routes/management/shifts';
 import Support from 'async!../routes/support';
 import Profile from 'async!../routes/profile';
 import Docs from 'async!../routes/docs';
@@ -15,6 +16,7 @@ import WorkSpace from '../components/organisms/workSpace';
 import Login from '../components/pages/login';
 import Loading from '../components/pages/loading';
 import Search from '../components/molecules/search';
+import Message from '../components/molecules/message';
 import AddList from '../components/molecules/addList';
 import ButtonAdd from '../components/atoms/buttonAdd';
 import { connect } from 'preact-redux'
@@ -79,6 +81,7 @@ class App extends Component {
                             <Marketing path="/marketing/" />
                             <MarketingAnalysis path="/marketing/analysis" />
                             <Management path="/management/" />
+                            <ManagementShifts path="/management/shifts/" />
                             <Support path="/support/" />
                         </Router>
                     </Main>
@@ -86,6 +89,7 @@ class App extends Component {
                     <ButtonAdd />
                     <AddList />
                     <PersonalMenu />
+                    <Message txt={this.props.s.data.error} />
                 </div>
                 )
         } else if (this.state.checkLogin && !this.props.s.login ) {

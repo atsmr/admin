@@ -1,9 +1,39 @@
 import { createStore } from 'redux'
 
 let ACTIONS = {
-    TEST: ({ s, ...state }, { payload }) => ({
+    HIDE_MESSAGE: ({ s, ...state }, { t, m }) => ({
         s: {
-            ...s
+            ...s,
+            visibility: {
+                ...s.visibility,
+                message: false
+            },
+            data: {
+                ...s.data,
+                message: {
+                    ...s.data.message,
+                    type: 'error',
+                    txt: '',
+                }
+            }
+        },
+        ...state
+    }),
+    SHOW_MESSAGE: ({ s, ...state }, { t, m }) => ({
+        s: {
+            ...s,
+            visibility: {
+                ...s.visibility,
+                message: true
+            },
+            data: {
+                ...s.data,
+                message: {
+                    ...s.data.message,
+                    type: t,
+                    txt: m,
+                }
+            }
         },
         ...state
     }),
@@ -41,7 +71,7 @@ let ACTIONS = {
         s: {
             ...s,
             type: {
-               ...s.type,
+                ...s.type,
                 workSpace: name
             },
             visibility: {
@@ -108,6 +138,7 @@ const INITIAL = {
             workSpace: ''
         },
         visibility: {
+            message: false,
             workSpace: false,
             search: false,
             personalMenu: false,
@@ -116,6 +147,12 @@ const INITIAL = {
         position: {
             main: [],
             headerNav: [44, 25], // [barSize, positionFromLeft]
+        },
+        data: {
+            message: {
+                type: 'error',
+                txt: 'fdsafdsa'
+            }
         },
         fetched: {
             users: false

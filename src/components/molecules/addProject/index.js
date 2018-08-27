@@ -12,8 +12,8 @@ import 'firebase/firestore';
 
 @connect(reducer, actions)
 class AddProject extends Component {
-	constructor(props) {
-		super(props)
+    constructor(props) {
+        super(props)
         this.onKeyChange = this.onKeyChange.bind(this)
         this.db = firebase.firestore()
         this.initId = this.db.collection('tasks').doc().id
@@ -32,6 +32,7 @@ class AddProject extends Component {
             }
         }
     }
+
     onKeyChange = (e) => {
         let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
@@ -42,13 +43,29 @@ class AddProject extends Component {
                 }
             }))
         } else if(e.keyCode === 8 && !e.target.value) {
-            // TODO: Filter result is false!!
-            this.setState(s => ({
-                tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
-                project: {
-                    tasks: s.tasks.filter(task => task !== e.target.dataset.key)
-                }
-            }))
+            let target = document.getElementById('items')
+
+            if(this.state.tasks.length !== 1) {
+                this.setState(s => ({
+                    tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
+                    project: {
+                        tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+                    }
+                }))
+                let input = target.children[target.children.length - 2].children[0].children[2].children[0]
+                input.disabled = false
+                input.focus()
+            } else {
+                this.props.showMessage('error','You should type any text!')
+                setTimeout(()=>{
+                    this.props.hideMessage(false)
+                    let input = target.children[target.children.length - 1].children[0].children[2].children[0]
+                    input.disabled = false
+                    setTimeout(()=> {
+                        input.focus()
+                    }, 10)
+                }, 1500)
+            }
         }
     }
 
@@ -59,12 +76,15 @@ class AddProject extends Component {
     }
 
     render() {
-        console.log(this.state)
+
+        console.log(this.state.tasks);
+
         let Tasks = this.state.tasks.map((task,i) => {
             return (
                 <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placehodler={task.title} onkeydown={this.onKeyChange} />
-                )
+            )
         })
+
         return (
             <section class={style.r}>
                 <div class={style.wrap}>
@@ -118,7 +138,7 @@ class AddProject extends Component {
                     </div>
                 </div>
             </section>
-            )
+        )
     }
 }
 

@@ -1,3 +1,16 @@
+export function hideMessage(bool) {
+    return {
+        type: 'HIDE_MESSAGE',
+        bool
+    }
+}
+export function showMessage(t, m) {
+    return {
+        type: 'SHOW_MESSAGE',
+        t,
+        m
+    }
+}
 export function openSearch(bool) {
     return {
         type: 'OPEN_SEARCH',

@@ -129,11 +129,26 @@ class Sidebar extends Component {
                     styles: {}
                 },
                 {
-                    children: [],
                     current: false,
                     href: '/management/',
                     title: 'Management',
-                    styles: {}
+                    styles: {},
+                    children: [
+                        {
+                            current: true,
+                            children: [],
+                            href: '/management/',
+                            styles: {},
+                            title: 'Summary',
+                        },
+                        {
+                            current: false,
+                            children: [],
+                            href: '/management/shifts/',
+                            styles: {},
+                            title: 'Shifts',
+                        }
+                    ],
                 }
             ]
         }
@@ -148,7 +163,7 @@ class Sidebar extends Component {
                     ...states,
                     current: { left : -100, top: 71 + 46.5 * i },
                     works: s
-                    })
+                })
                 )
                 setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
             } else if(pathname === '/') {
@@ -258,26 +273,23 @@ class Sidebar extends Component {
 
     render() {
         const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
-
         const SecondNav = this.state.secondNav.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={this.click} style={list.styles} href={list.href}>{list.title}</Link></li> })
-
         const ThirdNav = this.state.thirdNav.map((list) => {})
-
         return (
             <aside class={style.side}>
-                <div class={style.inr}>
-                    <nav>
-                        <ul style={{position: 'relative'}}>
-                            {FirstNav}
-                            <ul class={style.secondNav} style={{opacity: 0}}>{SecondNav}</ul>
-                            <ul class={style.thirdNav} style={{opacity: 0}}>{ThirdNav}</ul>
-                        </ul>
-                        <div class={style.currentBar} style={this.state.current}></div>
-                        <div class={style.back} style={this.state.back}><img src={BACK} width="24" height="24" alt="Back" /></div>
-                    </nav>
-                </div>
-                <Avatar />
-                <Punch />
+            <div class={style.inr}>
+            <nav>
+            <ul style={{position: 'relative'}}>
+            {FirstNav}
+            <ul class={style.secondNav} style={{opacity: 0}}>{SecondNav}</ul>
+            <ul class={style.thirdNav} style={{opacity: 0}}>{ThirdNav}</ul>
+            </ul>
+            <div class={style.currentBar} style={this.state.current}></div>
+            <div class={style.back} style={this.state.back}><img src={BACK} width="24" height="24" alt="Back" /></div>
+            </nav>
+            </div>
+            <Avatar />
+            <Punch />
             </aside>
         )
     }
