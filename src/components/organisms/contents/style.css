@@ -1,9 +1,9 @@
 .r {
     position: fixed;
     right: 0;
-    top: 177px;
+    top: 176px;
     width: calc( 100% - 240px)!important;
-    height: calc(100% - 225px)!important;
+    height: calc(100% - 226px)!important;
     left: 240px!important;
     overflow: scroll
 }

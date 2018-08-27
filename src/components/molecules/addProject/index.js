@@ -17,6 +17,7 @@ class AddProject extends Component {
 
 	constructor(props) {
 		super(props)
+        this.update = this.update.bind(this)
         this.onKeyChange = this.onKeyChange.bind(this)
         this.db = firebase.firestore()
         this.initId = this.db.collection('tasks').doc().id
@@ -39,6 +40,10 @@ class AddProject extends Component {
             }
         }
 
+    }
+  
+    update = () => {
+        console.log('update')
     }
 
     onKeyChange = (e) => {
@@ -87,7 +92,6 @@ class AddProject extends Component {
     }
 
     render() {
-
         if (this.props.s.set.project) {
           let pushId = this.db.collection('tasks').doc().id
           let DataTasks = {};
@@ -140,6 +144,11 @@ class AddProject extends Component {
               </li>
             )
         })
+        if(this.props.s.type.workSpace === 'Project') {
+            this.update()
+        }
+        return (
+=======
         let assignedMember;
         if (this.state.member) {
           assignedMember =  <div class={style.list}> <ul > {userNameList} </ul> </div> 

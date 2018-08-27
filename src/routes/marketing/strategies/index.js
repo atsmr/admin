@@ -9,7 +9,7 @@ import "firebase/auth";
 import ContentsHeader from '../../../components/molecules/contentsHeader'
 
 @connect(reducer, actions)
-class MarketingAnalysis extends Component {
+class MarketingStrategies extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -48,7 +48,7 @@ class MarketingAnalysis extends Component {
     render() {
         return (
             <div class={style.r}>
-                <ContentsHeader title="Analysis" navs={this.state.navs} />
+                <ContentsHeader title="Strategies" navs={this.state.navs} />
                 <div class={style.items}>
                     <p>this is home page</p>
                 </div>
@@ -57,4 +57,4 @@ class MarketingAnalysis extends Component {
     }
 }
 
-export default MarketingAnalysis
+export default MarketingStrategies

@@ -5,7 +5,14 @@ import Home from 'async!../routes/home';
 import Projects from 'async!../routes/projects';
 import Marketing from 'async!../routes/marketing';
 import MarketingAnalysis from 'async!../routes/marketing/analysis';
+import MarketingResearch from 'async!../routes/marketing/research';
+import MarketingStrategies from 'async!../routes/marketing/strategies';
+import MarketingInternet from 'async!../routes/marketing/internet';
+import MarketingDirect from 'async!../routes/marketing/direct';
+import MarketingServices from 'async!../routes/marketing/services';
+import MarketingPricing from 'async!../routes/marketing/pricing';
 import Management from 'async!../routes/management';
+import ManagementBilling from 'async!../routes/management/billing';
 import Support from 'async!../routes/support';
 import Profile from 'async!../routes/profile';
 import Docs from 'async!../routes/docs';
@@ -78,10 +85,18 @@ class App extends Component {
                             <Profile path="/profile/" user="me" />
                             <Profile path="/profile/:user" />
                             <Docs path="/docs/" />
-                            <Projects path="/projects/" />
+                            <Projects path="/projects/" id="0" />
+                            <Projects path="/projects/:id" />
                             <Marketing path="/marketing/" />
                             <MarketingAnalysis path="/marketing/analysis" />
+                            <MarketingResearch path="/marketing/research" />
+                            <MarketingStrategies path="/marketing/strategies" />
+                            <MarketingInternet path="/marketing/internet" />
+                            <MarketingDirect path="/marketing/direct" />
+                            <MarketingServices path="/marketing/services" />
+                            <MarketingPricing path="/marketing/pricing" />
                             <Management path="/management/" />
+                            <ManagementBilling path="/management/billing/" />
                             <Support path="/support/" />
                         </Router>
                     </Main>
