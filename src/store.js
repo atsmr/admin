@@ -79,34 +79,26 @@ let ACTIONS = {
         },
         ...state
     }),
-    LOGIN: ({ s, ...state }, { bool }) => ({
+    LOGIN: ({ s, ...state }, { obj, arr }) => ({
+        ...state,
         s: {
             ...s,
-            login: bool,
+            login: true,
         },
-        ...state
+        i: obj,
+        u: arr,
     }),
     PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
             set: {
-                project:bool
+                project: bool
             },
         },
         ...state
     }),
-    FETCH_USERS: ({ s,u, ...state }, { arr, obj }) => ({
-        s: {
-            ...s,
-            fetched: {
-                ...s.fetched,
-                users: true
-            }
-        },
-        u: arr,
-        ...state
-    })
 }
+
 
 const INITIAL = {
     s: { // States

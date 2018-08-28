@@ -41,23 +41,16 @@ export function changeMainSec(arr) {
         arr
     }
 }
-export function login(bool) {
+export function login(obj, arr) {
     return {
         type: 'LOGIN',
-        bool
+        obj,
+        arr
     }
 }
 export function pushProjectData(bool) {
     return {
         type: 'PUSH_PROJECT_DATA',
         bool
-    }
-}
-// Firestore
-export function fetchUsers(arr, obj) {
-    return {
-        type: 'FETCH_USERS',
-        arr,
-        obj
     }
 }

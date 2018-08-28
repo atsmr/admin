@@ -40,86 +40,78 @@ class App extends Component {
         firebase.initializeApp(config)
         this.db = firebase.firestore()
         this.db.settings({timestampsInSnapshots: true})
+        this.state = {
+            loading: true
+        }
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let uid = user.uid
-                that.props.login(true)// login bypas
-                that.setState({checkLogin: true})
-
                 that.db.collection("people").where('user', '==', true).onSnapshot(function(docs) {
                     let users = []
                     let currentUser = {}
                     let setLang
                     docs.forEach(function(doc) {
-                            doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? setLang = doc.data().setLanguage : null
-                      let hide = doc.data()
-                      users.push(hide)
-                      that.props.fetchUsers(users, currentUser)
+                        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? setLang = doc.data().setLanguage : null
+                        let hide = doc.data()
+                        users.push(hide)
                     })
-                //    docs.forEach(function(doc) {
-                //        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? currentUser = doc.data() : null
-                //        doc.data().language === setLang ? users.push(doc.data()) : null
-                //    })
-                //    that.props.fetchUsers(users, currentUser)
+                    docs.forEach(function(doc) {
+                        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? currentUser = doc.data() : null
+                        doc.data().language === setLang ? users.push(doc.data()) : null
+                    })
+                    that.props.login(currentUser, users)
+                    that.setState({loading: false})
                 })
             } else {
-                that.setState({checkLogin: true})
+                that.setState({loading: false})
             }
         })
-        this.state = {
-            checkLogin: false
-        }
     }
 
     handleRoute = e => { this.currentUrl = e.url }
 
     render() {
-        if(this.props.s.login && this.state.checkLogin ) {
+        console.log(this.props)
+        if(this.state.loading) {
+            return <Loading />
+        } else if (this.props.s.login) {
             return (
                 <div id="app">
-                    <Search />
-                    <Header />
-                    <Main>
-                        <Router onChange={this.handleRoute}>
-                            <Home path="/"/>
-                            <Profile path="/profile/" user="me" />
-                            <Profile path="/profile/:user" />
-                            <Docs path="/docs/" />
-                            <Projects path="/projects/" id="0" />
-                            <Projects path="/projects/:id" />
-                            <Marketing path="/marketing/" />
-                            <MarketingAnalysis path="/marketing/analysis" />
-                            <MarketingResearch path="/marketing/research" />
-                            <MarketingStrategies path="/marketing/strategies" />
-                            <MarketingInternet path="/marketing/internet" />
-                            <MarketingDirect path="/marketing/direct" />
-                            <MarketingServices path="/marketing/services" />
-                            <MarketingPricing path="/marketing/pricing" />
-                            <Management path="/management/" />
-                            <ManagementBilling path="/management/billing/" />
-                            <Support path="/support/" />
-                        </Router>
-                    </Main>
-                    <WorkSpace />
-                    <ButtonAdd />
-                    <AddList />
-                    <PersonalMenu />
+                <Search />
+                <Header />
+                <Main>
+                <Router onChange={this.handleRoute}>
+                <Home path="/"/>
+                <Profile path="/profile/" user="me" />
+                <Profile path="/profile/:user" />
+                <Docs path="/docs/" />
+                <Projects path="/projects/" id="0" />
+                <Projects path="/projects/:id" />
+                <Marketing path="/marketing/" />
+                <MarketingAnalysis path="/marketing/analysis" />
+                <MarketingResearch path="/marketing/research" />
+                <MarketingStrategies path="/marketing/strategies" />
+                <MarketingInternet path="/marketing/internet" />
+                <MarketingDirect path="/marketing/direct" />
+                <MarketingServices path="/marketing/services" />
+                <MarketingPricing path="/marketing/pricing" />
+                <Management path="/management/" />
+                <ManagementBilling path="/management/billing/" />
+                <Support path="/support/" />
+                </Router>
+                </Main>
+                <WorkSpace />
+                <ButtonAdd />
+                <AddList />
+                <PersonalMenu />
                 </div>
-                )
-        } else if (this.state.checkLogin && !this.props.s.login ) {
-            return <Login />
+            )
         } else {
-            return <Loading />
-       }
+            return <Login />
+        }
     }
 }
 
 export default App
 
 //that.db.collection('people').doc().set(doc.data())
-
-//firebase.auth().signOut().then(function() {
-//  // Sign-out successful.
-//}).catch(function(error) {
-//  // An error happened.
-//})
