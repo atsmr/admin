@@ -109,26 +109,26 @@ let ACTIONS = {
         },
         ...state
     }),
-    LOGIN: ({ s, ...state }, { bool }) => ({
-        s: {
-            ...s,
-            login: bool,
-        },
-        ...state
-    }),
-    FETCH_USERS: ({ s, ...state }, { arr, obj }) => ({
+    LOGIN: ({ s, ...state }, { obj, arr }) => ({
         ...state,
         s: {
             ...s,
-            fetched: {
-                ...s.fetched,
-                users: true
-            }
+            login: true,
         },
         i: obj,
-        u: arr
-    })
+        u: arr,
+    }),
+    PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
+        s: {
+            ...s,
+            set: {
+                project: bool
+            },
+        },
+        ...state
+    }),
 }
+
 
 const INITIAL = {
     s: { // States
@@ -157,7 +157,34 @@ const INITIAL = {
         fetched: {
             users: false
         },
-        set: null
+        data: {
+            projects: [
+                {
+                    id: 'fdsafd12j3jfds3',
+                    title: 'Amore Miyakojima',
+                    done: false,
+                    codeName: 'Amore',
+                    type: '6kObdS3foO2uAODNwAE9',
+                    content: '',
+                    author: '1CsJRlXltfc7NgLk6sHGQsy522F3',
+                    team: ['1CsJRlXltfc7NgLk6sHGQsy522F3'],
+                    dueDate: '',
+                    recommend: '',
+                    budgetMoney: 0,
+                    budgetTime: '',
+                    tasks: [],
+                    comments: [''],
+                    modifiedAt: '',
+                    createdAt: ''
+                }
+            ]
+        },
+        current: {
+            task: 'fdsafd12j3jfds3'
+        },
+        set: {
+            project:false
+        }
     },
     u: [], // Users
     i: {}, // Current user

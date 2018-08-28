@@ -7,6 +7,7 @@ import reducer from '../../reducer'
 import firebase from "firebase/app";
 import "firebase/auth";
 import ContentsHeader from '../../components/molecules/contentsHeader'
+import Chart from '../../components/molecules/chart'
 
 @connect(reducer, actions)
 class Home extends Component {
@@ -38,7 +39,129 @@ class Home extends Component {
             <div class={style.r}>
                 <ContentsHeader title="Dashboard" navs={this.state.navs} />
                 <div class={style.items}>
+                    <Chart pfx="1" type="circle" ratio="90" />
+                    <Chart pfx="2" type="circle" ratio="50" />
+                    <Chart pfx="3" type="circle" ratio="100" />
+                    <Chart pfx="4" type="line" />
                     <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>this is home page</p>
+                    <p>hoge is home page</p>
                 </div>
             </div>
             )

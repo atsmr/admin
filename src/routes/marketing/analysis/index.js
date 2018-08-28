@@ -1,14 +1,60 @@
-import { h } from 'preact';
-import style from './style';
+import { h, Component } from 'preact';
+import { Link } from 'preact-router/match';
+import { connect } from 'preact-redux'
+import style from './style.css';
+import * as actions from '../../../actions'
+import reducer from '../../../reducer'
+import firebase from "firebase/app";
+import "firebase/auth";
 import ContentsHeader from '../../../components/molecules/contentsHeader'
 
-const MarketingAnalysis = () => (
-	<div class={style.home}>
-        <ContentsHeader title="Analysis" />
-		<p>This is the Analysis component.</p>
-		<p>This is the Analysis component.</p>
-		<p>This is the Analysis component.</p>
-	</div>
-);
+@connect(reducer, actions)
+class MarketingAnalysis extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            navs: [
+                {
+                    id: '',
+                    title: 'Day',
+                    current: true
+                },
+                {
+                    id: '',
+                    title: 'Month',
+                    current: false
+                },
+                {
+                    id: '',
+                    title: 'Year',
+                    current: false
+                }
+            ],
+            data: [
+                {
+                    id: '',
+                    title: '',
+                    type: 'Quotation/Invoice/Paid',
+                    client: '',
+                    dueQuotation: '',
+                    dueInvoice: ''
+                }
+            ]
+        }
+    }
+    componentWilMount() {
+    }
 
-export default MarketingAnalysis;
+    render() {
+        return (
+            <div class={style.r}>
+                <ContentsHeader title="Analysis" navs={this.state.navs} />
+                <div class={style.items}>
+                    <p>this is home page</p>
+                </div>
+            </div>
+            )
+    }
+}
+
+export default MarketingAnalysis

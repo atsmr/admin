@@ -9,6 +9,7 @@ import reducer from '../../../reducer'
 import * as actions from '../../../actions'
 
 @connect(reducer, actions)
+
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -56,4 +57,5 @@ class Login extends Component {
        )
     }
 }
+
 export default Login

@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
 import { Link } from 'preact-router/match';
 import { connect } from 'preact-redux'
 import style from './style';
@@ -15,17 +16,18 @@ class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.click = this.click.bind(this)
-        this.evalFirstUrls = this.evalFirstUrls.bind(this)
-        this.evalSecondUrls = this.evalSecondUrls.bind(this)
-        this.evalThirdUrls = this.evalThirdUrls.bind(this)
-        this.constCurrent = this.constCurrent.bind(this)
+        this.secondClick = this.secondClick.bind(this)
+        this.current = this.current.bind(this)
+        this.default = this.default.bind(this)
+        this.gotoSecond = this.gotoSecond.bind(this)
+        this.backFirst = this.backFirst.bind(this)
+        this.initNav = this.initNav.bind(this)
+        this.dispatchWorks = this.dispatchWorks.bind(this)
+        this.initSecondNav = this.initSecondNav.bind(this)
         this.defaltFontSize = 18
         this.secondFontSize = 16
         this.state = {
-            back: {
-                top: 65,
-                left: -20
-            },
+            back: { top: 65, left: -20 },
             current: { left: 0, top: 0 },
             secondNav: [],
             thirdNav: [],
@@ -147,7 +149,14 @@ class Sidebar extends Component {
                             href: '/management/shifts/',
                             styles: {},
                             title: 'Shifts',
-                        }
+                        },
+                        {
+                            current: false,
+                            children: [],
+                            href: '/management/billing/',
+                            styles: {},
+                            title: 'Billing',
+                        }                      
                     ],
                 }
             ]
@@ -175,20 +184,78 @@ class Sidebar extends Component {
                     works: s
                 })
                 )
-                setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)
+                setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)            
+    }
+                
+    dispatchWorks = (arr, i) => {
+        for(let j = 0; j < arr.length; j++) {
+            if(i === j) {
+                arr[j].styles = {
+                    fontSize: 28,
+                    color: '#333',
+                    lineHeight: 1.6,
+                    letterSpacing: '1px',
+                    left: 60,
+                    top: 55
+                }
             } else {
-                this.evalSecondUrls(pathname)
+                arr[j].styles = {
+                    display: 'none'
+                }
+            }
+        }
+        return arr
+    }
+
+    initNav = pathname => {
+        let dir, index = 0
+
+        this.state.works.map((e,i) => {
+            if(pathname.match(e.href) !== null && e.href !== '/' && e.children.length !== 0) {
+                dir = 1
+                e.children.map((elm, j) => {
+                    if(elm.href === pathname) {
+                        index = j
+                    }
+                })
+
+                this.setState(s => ({
+                    ...s,
+                    back: { top: 65, left: 28},
+                    current: { top: 71 + 47 * (index + 1)},
+                    secondNav: this.initSecondNav(e, index),
+                    works: this.dispatchWorks([...s.works], i)
+                }))
+            } else if(e.href === pathname) {
+                e.current = true
+                this.setState(s => ({
+                    current: { left : -100, top: 71 + 46.5 * i },
+                }))
+                setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
             }
         })
     }
 
-    evalSecondUrls = (pathname) => {
-    }
-
-    evalThirdUrls = () => {
-    }
-
-    constCurrent = () => {
+    initSecondNav = (elements, index) => {
+        let children =  elements.children
+        for(let i=0; i < children.length; i++) {
+            if(i === index) {
+                children[i].current = true
+                children[i].styles = {
+                    left: 60,
+                    fontSize: 16,
+                    top: 108 + 16 * i + 30 * i
+                }
+            } else {
+                children[i].current = false
+                children[i].styles = {
+                    left: 60,
+                    fontSize: 16,
+                    top: 108 + 16 * i + 30 * i
+                }
+            }
+        }
+        return children
     }
 
     componentWillMount() {
@@ -207,73 +274,142 @@ class Sidebar extends Component {
 
     componentDidMount() {
         const pathname = window.location.pathname
-        this.evalFirstUrls(pathname)
+        this.initNav(pathname)
     }
 
-    click = (e, nextList) => {
-        if (nextList.children != 0) {
-            for (let i=0; i < this.state.works.length; i++) {
-                if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()){
-                    this.state.works[i].styles = {
-                        fontSize: 28,
-                        color: '#333',
+
+    gotoSecond = (states, index) => {
+        states.map((s,i) => {
+            if(i === index) {
+                s.styles = {
+                    fontSize: 28,
+                    color: '#333',
+                    lineHeight: 1.6,
+                    letterSpacing: '1px',
+                    left: 60,
+                    top: 55
+                }
+            } else {
+                s.styles = {
+                    display: 'none'
+                }
+            }
+        })
+        return states
+    }
+
+    backFirst = (states, index) => {
+        states.map((s,i) => {
+            if(i === 0) {
+                s.current = true,
+                    s.styles = {
+                        fontSize: 16,
                         lineHeight: 1.6,
+                        letterSpacing: '1px',
                         left: 60,
-                        top: 55
+                        top: 71 + 47 * i
                     }
-                } else{
-                    this.state.works[i].styles = {
-                        display: 'none'
+            } else {
+                s.current = false,
+                    s.styles = {
+                        fontSize: 16,
+                        lineHeight: 1.6,
+                        letterSpacing: '1px',
+                        left: 60,
+                        top: 71 + 47 * i
                     }
+            }
+        })
+        return states
+    }
+
+    default = (states, index) => {
+        states.map((s,i) => {
+            s.styles = { display: 'none' }
+        })
+        return states
+    }
+
+    current = (states,index) => {
+        states.map((s,i) => {
+            if(i === index) {
+                s.current = true
+            } else {
+                s.current = false
+            }
+        })
+        return states
+    }
+
+    click = (e, nextList, dir) => {
+        const works = this.state.works
+        let items, index
+
+        for(let i=0; i < works.length; i++) {
+            if(works[i].title === nextList.title) {
+                index = i
+            } else {
+                if(works[i].children.length !== 0) {
+                    works[i].children.map((s,i) => {
+                    })
                 }
             }
-            this.state.works
-            for(let i=0; i < nextList.children.length; i++) {
-                if (i === 0) {
-                    nextList.children[i].styles = {
-                        left: 60,
-                        fontSize: 16,
-                        top: 108
-                    }
-                } else {
-                    nextList.children[i].styles = {
-                        left: 60,
-                        fontSize: 16,
-                        top: 108 + 16 * i + 30 * i
-                    }
-                }
+        }
+
+        if(dir === 0) {
+            if(nextList.styles.fontSize === 28) {
+                this.setState(s => ({
+                    ...s,
+                    current: { left : 0, top: 71 },
+                    back: { top: 65, left: -20 },
+                    secondNav: this.default([...s.secondNav], index),
+                    works: this.backFirst([...s.works], index)
+                }))
+                return
             }
-            this.setState(states => (
-                {
-                    ...states,
-                    secondNav: nextList.children,
-                    back: { top: 65, left: 28},
-                    current: { top: 71 + 47}
-                }
-            ))
-        } else {
-            for(let i=0; i < this.state.works.length; i++) {
-                if (this.state.works[i].title.toLowerCase() === e.target.innerText.toLowerCase()) {
-                    let w = this.state.works[i].current = true
-                    this.setState(w)
-                    this.setState(states => (
-                        {
-                            ...states,
-                            secondNav: this.state.works[i].children,
-                            current: { top: 72 + 46 * i}
-                        }
-                    ))
-                } else {
-                    let w = this.state.works[i].current = false
-                    this.setState(w)
-                }
+
+            switch(nextList.href.match(/\//gm).length) {
+                case 1: // First Dir & First Object
+                    this.setState(s => ({
+                        ...s,
+                        current: { top: 71 },
+                        works: this.current([...s.works], index)
+                    }))
+                    break
+                case 2: // First Directory
+                    if(nextList.children.length !== 0) {
+                        this.setState(s => ({
+                            ...s,
+                            secondNav: this.initSecondNav(nextList),
+                            back: { top: 65, left: 28},
+                            current: { top: 71 + 47 },
+                            works: this.gotoSecond([...s.works], index)
+                        }))
+                    } else {
+                        this.setState(s => ({
+                            ...s,
+                            current: { top: 71 + 47 * index },
+                            works: this.current([...s.works], index)
+                        }))
+                    }
+                    break
+                default:
+                    break
             }
         }
     }
 
+    secondClick = (currentList, index, depth) => {
+        this.setState(s => ({
+            ...s,
+            secondNav: this.current([...s.secondNav], index),
+            current: { top: 118 + 46 * index },
+        }))
+    }
+
     render() {
-        const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list)} style={list.styles} href={list.href}>{list.title}</Link></li> })
-        const SecondNav = this.state.secondNav.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={this.click} style={list.styles} href={list.href}>{list.title}</Link></li> })
+        const FirstNav = this.state.works.map((list) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.click(e, list, 0)} style={list.styles} href={list.back ? '/' : list.href}>{list.title}</Link></li> })
+        const SecondNav = this.state.secondNav.map((list, i) => { return <li class={ list.current ? style.on : ''} ><Link onclick={(e) => this.secondClick(this.state.secondNav, i, 1)} style={list.styles} href={list.href}>{list.title}</Link></li> })
         const ThirdNav = this.state.thirdNav.map((list) => {})
         return (
             <aside class={style.side}>
@@ -291,9 +427,8 @@ class Sidebar extends Component {
             <Avatar />
             <Punch />
             </aside>
-        )
-    }
+            )
+}
 }
 
 export default Sidebar;
-

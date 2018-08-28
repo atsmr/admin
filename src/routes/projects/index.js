@@ -7,11 +7,13 @@ import reducer from '../../reducer'
 import firebase from "firebase/app";
 import "firebase/auth";
 import ContentsHeader from '../../components/molecules/contentsHeader'
+import Project from '../../components/organisms/project'
 
 @connect(reducer, actions)
 class Projects extends Component {
     constructor(props) {
         super(props)
+        this.getTitle = this.getTitle.bind(this)
         this.state = {
             navs: [
                 {
@@ -30,101 +32,61 @@ class Projects extends Component {
                     current: false
                 }
             ],
-            items: [
-                {
-                    id: '',
-                    title: 'Amore MIYAKOJIMA',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Amore MIYAKOJIMA',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Amore MIYAKOJIMA',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Amore MIYAKOJIMA',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Amore MIYAKOJIMA',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                },
-                {
-                    id: '',
-                    title: 'Macbee Planet Robee Crawler',
-                    type: 'Web Creation',
-                }
-            ]
+            items: []
         }
     }
-
-    render() {
-        let items = this.state.items;
-        let ProjectItems = items.map((item) => {
-            return (
-                <li>
-                    <p class={style.cat}>{item.type}</p>
-                    <h2>{item.title}</h2>
-                </li>
-                )
+    componentWillMount() {
+        let data = this.props.s.data.projects
+        this.setState((state) => {
+            state.items = data
         })
+    }
+
+    getTitle = (id) => {
+        let title;
+        this.state.items.filter((item) => {
+            item.id === id ? title = item.title : null
+        })
+        return title
+    }
+
+    render({id}) {
+        let ProjectItems
+        if(this.state.items.length != 0) {
+            let items = this.state.items
+            ProjectItems  = items.map((item) => {
+                return (
+                    <Link href={'/projects/' + item.id + '/'}>
+                        <li>
+                            <p class={style.cat}>{item.type}</p>
+                            <h2>{id}{item.title}</h2>
+                        </li>
+                    </Link>
+                    )
+            })
+    }
+
+    if(id === "0") {
         return (
             <div class={style.r}>
-                <ContentsHeader title="Projects" navs={this.state.navs} />
+                <ContentsHeader title={this.getTitle(id) ? this.getTitle(id) : 'Projects'} navs={this.state.navs}/>
                 <div class={style.items}>
                     <ul>
-                        { ProjectItems }
+                        {ProjectItems}
                     </ul>
                 </div>
             </div>
             )
+    } else {
+        return (
+            <div class={style.r}>
+                <ContentsHeader title={this.getTitle(id)} navs={this.state.navs}/>
+                <div class={style.items}>
+                    <Project id={id} />
+                </div>
+            </div>
+            )
+        }
     }
 }
 
