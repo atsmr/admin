@@ -3,10 +3,12 @@
     border: 0;
     width: calc(100% - 80px);
 }
+/*
 .editableList:hover {
     background: #fff;
     cursor: pointer
 }
+*/
 
 .editableListFocus {
     padding: 0 40px;

@@ -1,0 +1,48 @@
+.error {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background: #ff2c55;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+.error .inr {
+    max-width: 1160px;
+    padding: 16px 0 ;
+    text-align: center;
+    margin: 0 auto
+}
+.error .inr p {
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 14px;
+}
+.success {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background: #81ba52;
+    transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+.success .inr {
+    max-width: 1160px;
+    padding: 16px 0 ;
+    text-align: center;
+    margin: 0 auto
+}
+.success .inr p {
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 14px;
+}

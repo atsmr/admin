@@ -44,7 +44,7 @@ class AddProject extends Component {
     update = () => {
         console.log('update')
     }
-
+    
     onKeyChange = (e) => {
         //  let pushId = this.db.collection('tasks').doc().id
         if(e.keyCode === 13 && e.target.value) {
@@ -52,10 +52,31 @@ class AddProject extends Component {
             this.setState(s => ({
                 tasks: [...s.tasks, {title: e.target.value} ],
             }))
-        }
+        } else if(e.keyCode === 8 && !e.target.value) {
+            let target = document.getElementById('items')
 
-
-        else if(e.keyCode === 8 && !e.target.value) {
+            if(this.state.tasks.length !== 1) {
+                this.setState(s => ({
+                    tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
+                    project: {
+                        tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+                    }
+                }))
+                let input = target.children[target.children.length - 2].children[0].children[2].children[0]
+                input.disabled = false
+                input.focus()
+            } else {
+                this.props.showMessage('error','You should type any text!')
+                setTimeout(()=>{
+                    this.props.hideMessage(false)
+                    let input = target.children[target.children.length - 1].children[0].children[2].children[0]
+                    input.disabled = false
+                    setTimeout(()=> {
+                        input.focus()
+                    }, 10)
+                }, 1500)
+            }
+        } else if(e.keyCode === 8 && !e.target.value) {
             // TODO: Filter result is false!!
             this.setState(s => ({
                 tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
@@ -118,7 +139,7 @@ class AddProject extends Component {
 
         let Tasks = this.state.tasks.map((task,i) => {
             return (
-                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} onkeydown={this.onKeyChange} />
+                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placehodler={task.title} onkeydown={this.onKeyChange} />
             )
         })
 

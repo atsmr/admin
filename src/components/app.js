@@ -12,6 +12,7 @@ import MarketingDirect from 'async!../routes/marketing/direct';
 import MarketingServices from 'async!../routes/marketing/services';
 import MarketingPricing from 'async!../routes/marketing/pricing';
 import Management from 'async!../routes/management';
+import ManagementShifts from 'async!../routes/management/shifts';
 import ManagementBilling from 'async!../routes/management/billing';
 import Support from 'async!../routes/support';
 import Profile from 'async!../routes/profile';
@@ -22,6 +23,7 @@ import WorkSpace from '../components/organisms/workSpace';
 import Login from '../components/pages/login';
 import Loading from '../components/pages/loading';
 import Search from '../components/molecules/search';
+import Message from '../components/molecules/message';
 import AddList from '../components/molecules/addList';
 import ButtonAdd from '../components/atoms/buttonAdd';
 import { connect } from 'preact-redux'
@@ -96,6 +98,7 @@ class App extends Component {
                 <MarketingServices path="/marketing/services" />
                 <MarketingPricing path="/marketing/pricing" />
                 <Management path="/management/" />
+                <ManagementShifts path="/management/shifts/" />
                 <ManagementBilling path="/management/billing/" />
                 <Support path="/support/" />
                 </Router>
@@ -104,6 +107,7 @@ class App extends Component {
                 <ButtonAdd />
                 <AddList />
                 <PersonalMenu />
+                <Message txt={this.props.s.data.error} />
                 </div>
             )
         } else {
