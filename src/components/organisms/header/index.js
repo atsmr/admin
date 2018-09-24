@@ -5,7 +5,6 @@ import style from './style';
 import LOGO from '../../../assets/logo.svg'
 import * as actions from '../../../actions'
 import reducer from '../../../reducer'
-import Button from '../../atoms/Button'
 import ICON_ADD from '../../../assets/icons/icon-add-bl.svg'
 
 @connect(reducer, actions)

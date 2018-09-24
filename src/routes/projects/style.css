@@ -14,7 +14,8 @@
 .items a {
     color: #fff;
 }
-.items li {
+.itemsList {
+    position: relative;
     padding: 30px 40px;
     width: calc(25% - 81px);
     min-height: 160px;
@@ -25,14 +26,14 @@
     -webkit-transition: all .5s ease;
 }
 
-.items li a {
+.itemsList a {
     width: 100%;
     height: 100%;
     color: #fff;
     text-decoration: none
 }
 
-.items li h2 {
+.itemsList h2 {
     letter-spacing: 1px;
     margin-top: 10px;
     font-size: 18px;
@@ -48,7 +49,35 @@
     -webkit-text-fill-color: transparent;*/
     font-size: 12px;
 }
-.items li:hover {
+.itemsList:hover {
     background: #111;
     cursor: pointer
 }
+.teamAvatars {
+    position: relative;
+}
+
+.teamAvatars li img {
+    border: 1px solid #000;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+.teamAvatars li:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.teamAvatars li:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    z-index: 9;
+}
+.avatarPosition {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+}
+

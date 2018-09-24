@@ -44,12 +44,12 @@ class Input extends Component {
                             { this.props.i.thumbnail ? <img src={this.props.i.thumbnail} width="26" height="26" alt="" /> : <img src={UNKNOWN} width="26" height="26" alt="" /> }
                         </div>
                         <div class={style.title}>
-                <input id='mainInput' data-key={this.props.dataKey} data-index={this.props.dataIndex} key={this.props.key} ref={c => {this.refs=c} } type="text" placeholder={'Write a task name'} onkeydown={this.props.onkeydown} disabled={this.state.disabled} onblur={this.onBlur}/></div>
+                            <input id={this.props.id} data-key={this.props.dataKey} data-index={this.props.dataIndex} value={this.props.value} key={this.props.key} ref={c => {this.refs=c} } type="text" placeholder={'Write a task name'} onkeydown={this.props.onkeydown} disabled={this.state.disabled} onblur={this.onBlur}/></div>
                         <div class={style.check}>
                             <button><img src={CHECK} width="13" height="10" alt="" /></button>
                         </div>
                     </div>
-           </div>
+                </div>
             )
         }
     }

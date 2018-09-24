@@ -1,6 +1,83 @@
 import { createStore } from 'redux'
 
 let ACTIONS = {
+    UPDATE_TEAM_MEMBER: ({s, ...state}, {id}) => ({
+        s: {
+            ...s,
+            set: {
+                ...s.set,
+                project: {
+                    ...s.set.project,
+                    team: [...s.set.project.team, id]
+                }
+            }
+        },
+        ...state
+    }),
+    INIT_PROJECTS: ({s, ...state}, {obj}) => ({
+        s: {
+            ...s,
+            data: {
+                ...s.data,
+                projects: obj,
+            }
+        },
+        ...state
+    }),
+    UPDATE_PROJECT_FIRST_TASK: ({s, ...state}, {obj}) => ({
+        s: {
+            ...s,
+            set: {
+                ...s.set,
+                project: {
+                    ...s.set.project,
+                    tasks: [obj.id]
+                },
+                tasks: [obj]
+            }
+        },
+        ...state
+    }),
+    UPDATE_PROJECT_TASK: ({s, ...state}, {obj}) => ({
+        s: {
+            ...s,
+            set: {
+                ...s.set,
+                project: {
+                    ...s.set.project,
+                    tasks: [...s.set.project.tasks, obj.id]
+                },
+                tasks: [...s.set.tasks, obj]
+            }
+        },
+        ...state
+    }),
+    UPDATE_PROJECT_DESCRIPTION: ({s, ...state}, {value}) => ({
+        s: {
+            ...s,
+            set: {
+                ...s.set,
+                project: {
+                    ...s.set.project,
+                    description: value
+                }
+            }
+        },
+        ...state
+    }),
+    UPDATE_PROJECT_TITLE: ({s, ...state}, {value}) => ({
+        s: {
+            ...s,
+            set: {
+                ...s.set,
+                project: {
+                    ...s.set.project,
+                    title: value
+                }
+            }
+        },
+        ...state
+    }),
     HIDE_MESSAGE: ({ s, ...state }, { t, m }) => ({
         s: {
             ...s,
@@ -57,7 +134,7 @@ let ACTIONS = {
         },
         ...state
     }),
-    OPEN_ADD_LIST: ({ s, ...state }, { bool }) => ({
+    TOGGLE_ADD_LIST: ({ s, ...state }, { bool }) => ({
         s: {
             ...s,
             visibility: {
@@ -109,14 +186,14 @@ let ACTIONS = {
         },
         ...state
     }),
-    LOGIN: ({ s, ...state }, { obj, arr }) => ({
+    LOGIN: ({ s, ...state }, { currentUserObj, usersObj }) => ({
         ...state,
         s: {
             ...s,
             login: true,
         },
-        i: obj,
-        u: arr,
+        i: currentUserObj,
+        u: usersObj,
     }),
     PUSH_PROJECT_DATA: ({ s, ...state }, { bool }) => ({
         s: {
@@ -132,7 +209,7 @@ let ACTIONS = {
 
 const INITIAL = {
     s: { // States
-        login: false,
+        login: true,
         path: "/",
         type: {
             workSpace: ''
@@ -142,53 +219,46 @@ const INITIAL = {
             workSpace: false,
             search: false,
             personalMenu: false,
-            addList: false
+            addList: false,
+            addButtonloading: false
         },
         position: {
             main: [],
             headerNav: [44, 25], // [barSize, positionFromLeft]
         },
-        data: {
-            message: {
-                type: 'error',
-                txt: 'fdsafdsa'
-            }
-        },
         fetched: {
             users: false
         },
         data: {
-            projects: [
-                {
-                    id: 'fdsafd12j3jfds3',
-                    title: 'Amore Miyakojima',
-                    done: false,
-                    codeName: 'Amore',
-                    type: '6kObdS3foO2uAODNwAE9',
-                    content: '',
-                    author: '1CsJRlXltfc7NgLk6sHGQsy522F3',
-                    team: ['1CsJRlXltfc7NgLk6sHGQsy522F3'],
-                    dueDate: '',
-                    recommend: '',
-                    budgetMoney: 0,
-                    budgetTime: '',
-                    tasks: [],
-                    comments: [''],
-                    modifiedAt: '',
-                    createdAt: ''
-                }
-            ]
+            message: {
+                type: 'error',
+                txt: ''
+            },
+            projects: []
         },
         current: {
-            task: 'fdsafd12j3jfds3'
+            task: ''
         },
         set: {
-            project:false
-        }
+            project: {
+                title: '',
+                description: '',
+                clientId: '',
+                status: '',
+                startAt: '',
+                endAt: '',
+                due: '',
+                producer: '',
+                permission: 777,
+                team: [],
+                clientTeam: [],
+                tasks: []
+            },
+            tasks: []
+        },
     },
-    u: [], // Users
-    i: {}, // Current user
-    c: {} // User config
+    u: {}, // Users
+    i: {} // Current user
 }
 
 export default createStore( (state, action) => (

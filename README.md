@@ -24,4 +24,6 @@ For detailed explanation on how things work, checkout the [CLI Readme](https://g
 
 
 ## Features
+
+console.log
 ### Add
