@@ -38,7 +38,7 @@ class Main extends Component {
         return (
             <div class={style.switcher} style={ this.props.s.path === '/' ? { background: '#000'} : { background: '#fff'}}>
                 <div id="main" class={style.wrap}>
-                    <section style={{left: this.props.s.position.main[0] + 'px', position: 'relative'}}>
+                    <section class={style.switcherSection} style={{left: this.props.s.position.main[0] + 'px', position: 'relative'}}>
                         <div class={style.inr}>
                             <SideBar/>
                             <Contents>
@@ -46,7 +46,7 @@ class Main extends Component {
                             </Contents>
                         </div>
                     </section>
-                    <section style={{left: this.props.s.position.main[1] + 'px', position: 'relative'}}>
+                    <section class={style.switcherSection} style={{left: this.props.s.position.main[1] + 'px', position: 'relative'}}>
                         <div class={style.inr}>
                         </div>
                     </section>

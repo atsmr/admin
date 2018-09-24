@@ -1,3 +1,39 @@
+export function updateTeamMember(id) {
+    return {
+        type: 'UPDATE_TEAM_MEMBER',
+        id
+    }
+}
+export function initProjects(obj) {
+    return {
+        type: 'INIT_PROJECTS',
+        obj
+    }
+}
+export function updateProjectFirstTask(obj) {
+    return {
+        type: 'UPDATE_PROJECT_FIRST_TASK',
+        obj
+    }
+}
+export function updateProjectTask(obj) {
+    return {
+        type: 'UPDATE_PROJECT_TASK',
+        obj
+    }
+}
+export function updateProjectDescription(value) {
+    return {
+        type: 'UPDATE_PROJECT_DESCRIPTION',
+        value
+    }
+}
+export function updateProjectTitle(value) {
+    return {
+        type: 'UPDATE_PROJECT_TITLE',
+        value
+    }
+}
 export function hideMessage(bool) {
     return {
         type: 'HIDE_MESSAGE',
@@ -24,9 +60,9 @@ export function openWorkSpace(bool, name) {
         bool
     }
 }
-export function openAddList(bool) {
+export function toggleAddList(bool) {
     return {
-        type: 'OPEN_ADD_LIST',
+        type: 'TOGGLE_ADD_LIST',
         bool
     }
 }
@@ -54,11 +90,11 @@ export function changeMainSec(arr) {
         arr
     }
 }
-export function login(obj, arr) {
+export function login(currentUserObj, usersObj) {
     return {
         type: 'LOGIN',
-        obj,
-        arr
+        currentUserObj,
+        usersObj
     }
 }
 export function pushProjectData(bool) {

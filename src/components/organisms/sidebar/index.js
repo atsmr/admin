@@ -156,7 +156,7 @@ class Sidebar extends Component {
                             href: '/management/billing/',
                             styles: {},
                             title: 'Billing',
-                        }                      
+                        }
                     ],
                 }
             ]
@@ -172,8 +172,7 @@ class Sidebar extends Component {
                     ...states,
                     current: { left : -100, top: 71 + 46.5 * i },
                     works: s
-                })
-                )
+                }))
                 setTimeout(()=>{ this.setState({current: { left : 0, top: 71 + 46.5 * i}}) },500)
             } else if(pathname === '/') {
                 let s = this.state.works
@@ -182,11 +181,12 @@ class Sidebar extends Component {
                     ...states,
                     current: { left : -100, top: 71},
                     works: s
-                })
-                )
-                setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)            
+                }))
+                setTimeout(()=>{ this.setState({current: { left : 0, top: 71}}) },500)
+            }
+        })
     }
-                
+
     dispatchWorks = (arr, i) => {
         for(let j = 0; j < arr.length; j++) {
             if(i === j) {
@@ -413,22 +413,22 @@ class Sidebar extends Component {
         const ThirdNav = this.state.thirdNav.map((list) => {})
         return (
             <aside class={style.side}>
-            <div class={style.inr}>
-            <nav>
-            <ul style={{position: 'relative'}}>
-            {FirstNav}
-            <ul class={style.secondNav} style={{opacity: 0}}>{SecondNav}</ul>
-            <ul class={style.thirdNav} style={{opacity: 0}}>{ThirdNav}</ul>
-            </ul>
-            <div class={style.currentBar} style={this.state.current}></div>
-            <div class={style.back} style={this.state.back}><img src={BACK} width="24" height="24" alt="Back" /></div>
-            </nav>
-            </div>
-            <Avatar />
-            <Punch />
+                <div class={style.inr}>
+                    <nav>
+                        <ul style={{position: 'relative'}}>
+                            {FirstNav}
+                            <ul class={style.secondNav} style={{opacity: 0}}>{SecondNav}</ul>
+                            <ul class={style.thirdNav} style={{opacity: 0}}>{ThirdNav}</ul>
+                        </ul>
+                        <div class={style.currentBar} style={this.state.current}></div>
+                        <div class={style.back} style={this.state.back}><img src={BACK} width="24" height="24" alt="Back" /></div>
+                    </nav>
+                </div>
+                <Avatar />
+                <Punch />
             </aside>
-            )
-}
+        )
+    }
 }
 
 export default Sidebar;

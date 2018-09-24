@@ -23,9 +23,10 @@ import WorkSpace from '../components/organisms/workSpace';
 import Login from '../components/pages/login';
 import Loading from '../components/pages/loading';
 import Search from '../components/molecules/search';
+//import Comment from '../components/molecules/comment';
 import Message from '../components/molecules/message';
 import AddList from '../components/molecules/addList';
-import ButtonAdd from '../components/atoms/buttonAdd';
+import Button from '../components/atoms/button';
 import { connect } from 'preact-redux'
 import reducer from '../reducer'
 import * as actions from '../actions'
@@ -49,17 +50,11 @@ class App extends Component {
             if (user) {
                 let uid = user.uid
                 that.db.collection("people").where('user', '==', true).onSnapshot(function(docs) {
-                    let users = []
                     let currentUser = {}
-                    let setLang
+                    let users = {}
                     docs.forEach(function(doc) {
-                        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? setLang = doc.data().setLanguage : null
-                        let hide = doc.data()
-                        users.push(hide)
-                    })
-                    docs.forEach(function(doc) {
-                        doc.data().uid === uid && doc.data().setLanguage === doc.data().language ? currentUser = doc.data() : null
-                        doc.data().language === setLang ? users.push(doc.data()) : null
+                        doc.data().uid === uid ? currentUser = doc.data() : null
+                        users[doc.data().uid] = doc.data()
                     })
                     that.props.login(currentUser, users)
                     that.setState({loading: false})
@@ -73,41 +68,40 @@ class App extends Component {
     handleRoute = e => { this.currentUrl = e.url }
 
     render() {
-        console.log(this.props)
         if(this.state.loading) {
             return <Loading />
         } else if (this.props.s.login) {
             return (
                 <div id="app">
-                <Search />
-                <Header />
-                <Main>
-                <Router onChange={this.handleRoute}>
-                <Home path="/"/>
-                <Profile path="/profile/" user="me" />
-                <Profile path="/profile/:user" />
-                <Docs path="/docs/" />
-                <Projects path="/projects/" id="0" />
-                <Projects path="/projects/:id" />
-                <Marketing path="/marketing/" />
-                <MarketingAnalysis path="/marketing/analysis" />
-                <MarketingResearch path="/marketing/research" />
-                <MarketingStrategies path="/marketing/strategies" />
-                <MarketingInternet path="/marketing/internet" />
-                <MarketingDirect path="/marketing/direct" />
-                <MarketingServices path="/marketing/services" />
-                <MarketingPricing path="/marketing/pricing" />
-                <Management path="/management/" />
-                <ManagementShifts path="/management/shifts/" />
-                <ManagementBilling path="/management/billing/" />
-                <Support path="/support/" />
-                </Router>
-                </Main>
-                <WorkSpace />
-                <ButtonAdd />
-                <AddList />
-                <PersonalMenu />
-                <Message txt={this.props.s.data.error} />
+                    <Search />
+                    <Header />
+                    <Main>
+                        <Router onChange={this.handleRoute}>
+                            <Home path="/"/>
+                            <Profile path="/profile/" user="me" />
+                            <Profile path="/profile/:user" />
+                            <Docs path="/docs/" />
+                            <Projects path="/projects/" id="0" />
+                            <Projects path="/projects/:id" />
+                            <Marketing path="/marketing/" />
+                            <MarketingAnalysis path="/marketing/analysis" />
+                            <MarketingResearch path="/marketing/research" />
+                            <MarketingStrategies path="/marketing/strategies" />
+                            <MarketingInternet path="/marketing/internet" />
+                            <MarketingDirect path="/marketing/direct" />
+                            <MarketingServices path="/marketing/services" />
+                            <MarketingPricing path="/marketing/pricing" />
+                            <Management path="/management/" />
+                            <ManagementShifts path="/management/shifts/" />
+                            <ManagementBilling path="/management/billing/" />
+                            <Support path="/support/" />
+                        </Router>
+                    </Main>
+                    <WorkSpace />
+                    <Button type="add" />
+                    <AddList />
+                    <PersonalMenu />
+                    <Message txt={this.props.s.data.error} />
                 </div>
             )
         } else {
@@ -117,5 +111,4 @@ class App extends Component {
 }
 
 export default App
-
 //that.db.collection('people').doc().set(doc.data())

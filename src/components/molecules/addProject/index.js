@@ -6,237 +6,169 @@ import reducer from '../../../reducer'
 import * as actions from '../../../actions'
 import Input from '../../../components/atoms/input'
 import Select from '../../../components/atoms/select'
+import Avatar from '../../../components/molecules/avatar'
 import UNKNOWN from '../../../assets/icons/icon-anonymous.jpg'
 import firebase from "firebase/app";
 import 'firebase/firestore';
-import config from'../../../conf/firebase'
 import ADD from '../../../assets/add.svg';
 
 @connect(reducer, actions)
 class AddProject extends Component {
     constructor(props) {
         super(props)
-        this.update = this.update.bind(this)
-        this.onKeyChange = this.onKeyChange.bind(this)
+        //this.onKeyChange = this.onKeyChange.bind(this)
+        this.titleKeyChange = this.titleKeyChange.bind(this)
+        this.setTask = this.setTask.bind(this)
+        this.descKeyChange = this.descKeyChange.bind(this)
         this.db = firebase.firestore()
         this.initId = this.db.collection('tasks').doc().id
         this.state = {
-            member: false,
-            assignedMember: [
-            ],
-            tasks: [
-                {
-                    //  id: null,
-                    category: null,
-                    title: null
-                }
-            ],
-            users: [
-            ],
             project: {
-                title: null,
-                description: null,
-            }
+                title: '',
+                description: '',
+                team: []
+            },
         }
-
     }
 
-    update = () => {
-        console.log('update')
+    titleKeyChange = (e) => {
+        if(e.key === 'Control' || e.key == 'Shift' || e.key === 'Meta' || e.key === 'Enter' || e.key === 'Tab' || e.key === 'Down' || e.key === 'Up' || e.key === 'ArrowLeft' || e.key === 'Right' || undefined) {
+        } else if (e.key === 'Backspace') {
+            this.props.updateProjectTitle(this.props.s.set.project.title.slice(0, -1))
+        } else {
+            this.props.updateProjectTitle(this.props.s.set.project.title + e.key)
+        }
+        setTimeout(()=>{
+            e.target.focus()
+        }, 45)
     }
-    
-    onKeyChange = (e) => {
-        //  let pushId = this.db.collection('tasks').doc().id
-        if(e.keyCode === 13 && e.target.value) {
-            console.log(e.target.value);
-            this.setState(s => ({
-                tasks: [...s.tasks, {title: e.target.value} ],
-            }))
-        } else if(e.keyCode === 8 && !e.target.value) {
-            let target = document.getElementById('items')
 
-            if(this.state.tasks.length !== 1) {
-                this.setState(s => ({
-                    tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
-                    project: {
-                        tasks: s.tasks.filter(task => task !== e.target.dataset.key)
-                    }
-                }))
-                let input = target.children[target.children.length - 2].children[0].children[2].children[0]
-                input.disabled = false
-                input.focus()
-            } else {
-                this.props.showMessage('error','You should type any text!')
-                setTimeout(()=>{
-                    this.props.hideMessage(false)
-                    let input = target.children[target.children.length - 1].children[0].children[2].children[0]
-                    input.disabled = false
-                    setTimeout(()=> {
-                        input.focus()
-                    }, 10)
-                }, 1500)
-            }
-        } else if(e.keyCode === 8 && !e.target.value) {
-            // TODO: Filter result is false!!
-            this.setState(s => ({
-                tasks: s.tasks.filter(task => task.id !== e.target.dataset.key),
-                project: {
-                    tasks: s.tasks.filter(task => task !== e.target.dataset.key)
+    descKeyChange = (e) => {
+        if(e.key === 'Control' || e.key == 'Shift' || e.key === 'Meta' || e.key === 'Enter' || e.key === 'Tab' || e.key === 'Down' || e.key === 'Up' || e.key === 'ArrowLeft' || e.key === 'Right' || undefined) {
+        } else if (e.key === 'Backspace') {
+            this.props.updateProjectDescription(this.props.s.set.project.description.slice(0, -1))
+        } else {
+            this.props.updateProjectDescription(this.props.s.set.project.description + e.key)
+        }
+        setTimeout(()=>{
+            e.target.focus()
+        }, 45)
+    }
+
+    setTask = (e) => {
+        let uid = this.db.collection('tasks').doc().id
+        let obj = {
+            id: uid,
+            title: e.target.value,
+            description: '',
+            complete: false,
+            assigned: [],
+            attachments: [],
+            author: [],
+            startDate: '',
+            endDate: '',
+            dueDate: '',
+            modified: '',
+            created: '',
+            comments: [],
+            refTime: '',
+            resTime: '',
+            dependencies: {
+                prev: '',
+                next: ''
+            },
+            requiredRole: []
+        }
+        switch(e.keyCode) {
+            case 13:
+                let t = document.getElementById('add-task')
+                if(this.props.s.set.tasks.length === 1 && this.props.s.set.tasks[0].title === '') {
+                    e.target.value ? this.props.updateProjectFirstTask(obj) : null
+                } else {
+                    e.target.value ? this.props.updateProjectTask(obj) : null
                 }
-            }))
+                setTimeout(() => {
+                    t.disabled = false
+                    t.focus()
+                    e.target.value = ''
+                }, 35)
+                break
+            case 8:
+                break
+            default:
+                return
+                break
         }
-    }
-
-    componentWillMount(){
-        /*  
-      var citiesRef = this.db.collection('users');
-      var allCities = citiesRef.get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            let users = doc.data();
-            console.log(users);
-            this.setState(s => ({users:[...s.users, users]}))
-          });
-        })
-        .catch(err => {
-          console.log('Error getting documents', err);
-        });
-        */
     }
 
     componentDidMount() {
-        document.getElementById('add-task-title').focus()
-        setTimeout(()=>{
-            document.getElementById('add-task-title').focus()
-        },100)
+        setTimeout(()=>{ document.getElementById('add-task-title').focus() },100)
     }
 
     render() {
-        if (this.props.s.set.project) {
-            let pushId = this.db.collection('tasks').doc().id
-            let DataTasks = {};
-            let Timestamp = new Date();
-            let DataProjects = this.state.project;
-            let AssignedMember = this.state.assignedMember;
-
-            DataTasks.tasks = this.state.tasks.slice(1);
-            DataTasks.createTime = Timestamp
-            DataTasks.projectId = pushId
-
-            DataProjects.createTime = Timestamp
-            DataProjects.assignedMember = AssignedMember
-
-            this.db.collection('projects').doc(pushId).set(DataProjects).catch(function(error) {
-                console.error("Error writing document: ", error);
-            });
-            this.db.collection('tasks').doc().set(DataTasks).catch(function(error) {
-                console.error("Error writing document: ", error);
-            });
-
-            this.props.pushProjectData(false)
-            this.props.openWorkSpace(true)
-        }
-
-        let Tasks = this.state.tasks.map((task,i) => {
+        let Tasks = this.props.s.set.tasks.map((task,i) => {
             return (
-                <Input type="editableList" key={task.id} dataKey={task.id} dataIndex={i} placehodler={task.title} onkeydown={this.onKeyChange} />
+                <Input type="editableList" key={task.id} dataKey={task.id} value={task.title} dataIndex={i} placehodler={task.title} onkeydown={this.setTask} />
             )
         })
 
-        let assignedMemberView = this.state.assignedMember.map((z) => {
-            return (
-                <li>
-                    <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" />
-                    <p class={style.name} > {z.name}</p>
-                </li>
-            )
-        })
-        let userNameList = this.props.u.map((user) => {
-            return (
-                <li onclick={() => {this.setState({
-                    member: !this.state.member,
-                    assignedMember: this.state.assignedMember.concat([{email: user.email, name: user.handleName}])
-                })}}>
-                <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" /> 
-                <p class={style.name} > {user.handleName}</p>
-            </li>
-            )
-        })
-
-        if(this.props.s.type.workSpace === 'Project') {
-            this.update()
+        let Avatars = false
+        if(this.props.s.set.project.team.length !== 0) {
+            Avatars = this.props.s.set.project.team.map((uid,i) => {
+                return (
+                    <li class={style.teamList}>
+                        <div class={style.teamListWrap}>
+                            <img src={this.props.u[uid].thumbnail} width="26" height="auto" alt="" />
+                            <span class={style.teamListClose}><img src={ADD} width="10" height="10" alt="" /></span>
+                        </div>
+                    </li>
+                )
+            })
         }
 
-        let assignedMember;
-        if (this.state.member) {
-            assignedMember =  <div class={style.list}> <ul > {userNameList} </ul> </div>
-        }
-        let btn_class = this.state.member ? style.plusx : style.plus ;
-
-            return (
-                <section class={style.r}>
-                    <div class={style.wrap}>
-                        <div class={style.in}>
-                            <h1><span>Add</span>Project</h1>
-                            <div class={style.title}>
-                                <input 
-                                    id="add-task-title" 
-                                    placeholder="Title Name"  
-                                    type="text" 
-                                    value={this.state.project.title}  
-                                    onChange={(e) => this.setState({project:{...this.state.project,title: e.target.value}})}
-                                />
+        return (
+            <section class={style.r}>
+                <div class={style.wrap}>
+                    <div class={style.in}>
+                        <h1><span>Add</span>Project</h1>
+                        <div class={style.title}>
+                            <input id="add-task-title" key="projectTitle" type="text" placeholder="Project Name" value={this.props.s.set.project.title} onkeydown={this.titleKeyChange} />
+                        </div>
+                        <div class={style.info}>
+                            <div class={style.assigned}>
+                                <p class={style.label}>Producer</p>
+                                <div>
+                                    <Avatar src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } name={eval('this.props.i.firstName.' + this.props.i.setLanguage) + ' ' + eval('this.props.i.lastName.' + this.props.i.setLanguage)}  />
+                                </div>
                             </div>
-                            <div class={style.info}>
-                                <div class={style.types}>
-                                    <p class={style.label}>Type</p>
-                                    <div class={style.typesInr}>
-                                        <Select options={this.state.options} />
-                                    </div>
-                                </div>
-                                <div class={style.assigned}>
-                                    <p class={style.label}>Managed by</p>
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                <img src={this.props.i.thumbnail ? this.props.i.thumbnail : UNKNOWN } width="32" height="32" alt="" />
-                                                <p class={style.name}>{this.props.i.firstName + ' ' + this.props.i.lastName}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class={style.assigned}>
-                                    <p class={style.label}>Assignee</p>
-                                    <div onclick={() => this.setState({member: !this.state.member})} >
-                                        <img src={ADD} class={btn_class} />
-                                    </div >
-                                    <ul>
-                                        {assignedMemberView}
+                            <div class={style.assigned}>
+                                <p class={style.label}>Assignee</p>
+                                <div class={style.addAvatars}>
+                                    <ul class={style.avatarItemsWrap}>
+                                        {Avatars ? Avatars : null}
                                     </ul>
-                                    {assignedMember}
+                                    <Avatar type="add" />
                                 </div>
-                            </div>
-                            <div class={style.description}>
-                                <textarea
-                                    placeholder="Description"
-                                    value={this.state.project.description}
-                                    onChange={(e) => this.setState({project:{...this.state.project,description: e.target.value}})}>
-                                </textarea>
                             </div>
                         </div>
-                        <div class={style.tasks}>
-                            <header>
-                                <h1>Tasks</h1>
-                            </header>
-                            <div class={style.items}>
-                                <ul id="items">
-                                    {Tasks}
-                                </ul>
-                            </div>
+                        <div class={style.description}>
+                            <textarea placeholder="Description" value={this.props.s.set.project.description} onkeydown={this.descKeyChange} ></textarea>
                         </div>
                     </div>
-                </section>
-            )
+                    <div class={style.tasks}>
+                        <header>
+                            <h1>Tasks</h1>
+                        </header>
+                        <div class={style.items}>
+                            <ul id="items">
+                                {Tasks}
+                                <Input id="add-task" type="editableList" key="add" dataKey="add" placehodler="Add task" onkeydown={this.setTask} />
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 }
 

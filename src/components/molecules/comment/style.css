@@ -1,0 +1,31 @@
+.r {
+    position: fixed;
+    bottom: 23px;
+    right: 140px;
+    z-index: 100;
+    display: flex;
+    z-index: 999;
+}
+.r img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 1px solid #fff;
+    align-self: flex-end;
+}
+.r textarea {
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 0;
+    outline: 0;
+    margin-left: 15px;
+    min-width: 200px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    overflow:hidden;
+    display:block;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .55);
+    box-shadow: 0 0 15px rgba(0, 0, 0, .55);
+}

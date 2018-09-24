@@ -11,3 +11,27 @@
     lihe-height: 1.4;
     font-size: 48px
 }
+.skelton {
+    display: inline-block;
+    height: auto;
+    color: #000;
+    background: #111;
+    background: linear-gradient(to right, #090909 0%, #000 33%, #000 50%);
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}

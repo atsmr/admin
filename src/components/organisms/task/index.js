@@ -14,7 +14,7 @@ class Task extends Component {
         const tasks = this.props.tasks
 		return (
             <section class={style.r}>
-                pfdsafdsa
+                <input type="text" value="" placeholder="" />
             </section>
 		)
 	}
